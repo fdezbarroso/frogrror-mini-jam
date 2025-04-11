@@ -3,6 +3,7 @@ using UnityEngine;
 public class Item : MonoBehaviour, IInteractable
 {
     [SerializeField] private Sprite _icon;
+    [SerializeField] private string _pickUpMessage;
     
     public Sprite Icon => _icon;
     
@@ -14,5 +15,6 @@ public class Item : MonoBehaviour, IInteractable
     public void Interact()
     {
         GameplayManager.Instance.Player.TakeItem(this);
+        GameplayManager.Instance.DialogueUI.ShowMessage(_pickUpMessage);
     }
 }

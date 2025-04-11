@@ -6,7 +6,11 @@ public class GameplayManager : MonoBehaviour
     
     [SerializeField] private Player _player;
     
+    [Header("UI")]
+    [SerializeField] private DialogueUI _dialogueUI;
+    
     public Player Player => _player;
+    public DialogueUI DialogueUI => _dialogueUI;
 
     private void Awake()
     {
