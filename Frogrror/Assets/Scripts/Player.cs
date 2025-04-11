@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out InteractableHandler interactableHandler) && _interactableHandler != interactableHandler)
+        if (other.TryGetComponent(out InteractableHandler interactableHandler) && _interactableHandler == interactableHandler)
         {
             _interactableHandler.HideInstructions();
             _interactableHandler = null;

@@ -8,6 +8,8 @@ public interface IInteractable
 
 public class InteractableHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject _instructions;
+    
     private IInteractable _interactable;
 
     private void Awake()
@@ -17,12 +19,12 @@ public class InteractableHandler : MonoBehaviour
 
     public void ShowInstructions()
     {
-        Debug.LogError($"Press SPACE to interact with {_interactable.GetName()}");
+        _instructions.SetActive(true);
     }
 
     public void HideInstructions()
     {
-        
+        _instructions.SetActive(false);
     }
 
     public void Interact()
