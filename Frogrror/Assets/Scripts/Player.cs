@@ -7,13 +7,17 @@ public class Player : MonoBehaviour
 
     private InputAction _moveAction;
     private InputAction _interactAction;
+    private SpriteRenderer _spriteRenderer;
     
     private InteractableHandler _interactableHandler;
+    
+    public bool IsHiding { get; private set; }
 
     private void Awake()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
         _interactAction = InputSystem.actions.FindAction("Jump");
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -55,12 +59,12 @@ public class Player : MonoBehaviour
 
     private bool CanMove()
     {
-        return true;
+        return !IsHiding;
     }
 
     private bool CanMoveVertically()
     {
-        return true;
+        return false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -79,5 +83,17 @@ public class Player : MonoBehaviour
             _interactableHandler = interactableHandler;
             _interactableHandler.HideInstructions();
         }
+    }
+
+    public void Hide()
+    {
+        IsHiding = true;
+        _spriteRenderer.enabled = false;
+    }
+
+    public void Show()
+    {
+        IsHiding = false;
+        _spriteRenderer.enabled = true;
     }
 }
