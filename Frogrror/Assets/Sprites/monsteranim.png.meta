@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -109,7 +109,161 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: monster1_0
+      name: monsteranim_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5881de91d386c764ba27252c3a1c56ed
+      internalID: -1773339752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monsteranim_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40cfa9dc587d95a49bde7da468ab7a6a
+      internalID: -702746766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monsteranim_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2793386da1c0eb4ead6b041864fe010
+      internalID: 637397429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monsteranim_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3dc6c9178b1a1346b72f27e5d901d23
+      internalID: 928949326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monsteranim_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e343f7e8eac00e43973653a660513e3
+      internalID: 290646664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monsteranim_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f68639f6a59de8645ba2ba83bd7c1344
+      internalID: -383702773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monsteranim_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8106d804c157b4945a86f1eaad0a6b9d
+      internalID: 568185575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monsteranim_7
       rect:
         serializedVersion: 2
         x: 0
@@ -122,16 +276,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 28263fcdb152b73e0800000000000000
-      internalID: -2055008003363216766
+      spriteID: 9d98d148c3448f4419a7b8deba34e015
+      internalID: 1511265103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster1_1
+      name: monsteranim_8
       rect:
         serializedVersion: 2
         x: 32
@@ -144,16 +298,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f84aca2651c22d180800000000000000
-      internalID: -9092156227346193265
+      spriteID: f5c9bc1f8e3b5d746b83825f0f556558
+      internalID: -1810487355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: monster1_2
+      name: monsteranim_9
       rect:
         serializedVersion: 2
         x: 64
@@ -166,32 +320,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d0300a0ef6c812770800000000000000
-      internalID: 8584296776882717453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: monster1_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 874fa3ee85d6eef00800000000000000
-      internalID: 1147975183747445880
+      spriteID: 20016fda39fe7f5429d973d5564fdcc8
+      internalID: 1708247902
       vertices: []
       indices: 
       edges: []
@@ -210,10 +342,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      monster1_0: -2055008003363216766
-      monster1_1: -9092156227346193265
-      monster1_2: 8584296776882717453
-      monster1_3: 1147975183747445880
+      monsteranim_0: -1773339752
+      monsteranim_1: -702746766
+      monsteranim_2: 637397429
+      monsteranim_3: 928949326
+      monsteranim_4: 290646664
+      monsteranim_5: -383702773
+      monsteranim_6: 568185575
+      monsteranim_7: 1511265103
+      monsteranim_8: -1810487355
+      monsteranim_9: 1708247902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
