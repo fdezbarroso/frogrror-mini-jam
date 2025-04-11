@@ -6,14 +6,24 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 5.0f;
 
     private InputAction _moveAction;
+    private InputAction _interactAction;
+    
+    private InteractableHandler _interactableHandler;
 
     private void Awake()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
+        _interactAction = InputSystem.actions.FindAction("Jump");
     }
 
     private void Update()
     {
+        if (_interactAction.WasPerformedThisFrame() && _interactableHandler != null)
+        {
+            _interactableHandler.Interact();
+            return;
+        }
+        
         if (CanMove())
         {
             Move();
@@ -40,5 +50,24 @@ public class Player : MonoBehaviour
     private bool CanMoveVertically()
     {
         return false;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out InteractableHandler interactableHandler))
+        {
+            _interactableHandler = interactableHandler;
+            _interactableHandler.ShowInstructions();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out InteractableHandler interactableHandler))
+        {
+            _interactableHandler = interactableHandler;
+            _interactableHandler.HideInstructions();
+        }
     }
 }
