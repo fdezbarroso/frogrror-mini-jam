@@ -57,6 +57,15 @@ public class Player : MonoBehaviour
         {
             moveValue.x = 0f;
         }
+
+        if (moveValue.x > 0f)
+        {
+            _spriteRenderer.flipX = true;
+        }
+        else if (moveValue.x < 0f)
+        {
+            _spriteRenderer.flipX = false;
+        }
         
         transform.position += (Vector3)moveValue * (_speed * Time.deltaTime);
     }
