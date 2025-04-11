@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +15,10 @@ public class Player : MonoBehaviour
     private int _originalOrderInLayer;
     
     private InteractableHandler _interactableHandler;
+    
+    private readonly List<Item> _items = new List<Item>();
+    
+    public event Action<Item> OnItemAdded;
     
     public bool IsHiding { get; private set; }
 
@@ -108,5 +114,13 @@ public class Player : MonoBehaviour
     {
         IsHiding = false;
         _spriteRenderer.sortingOrder = _originalOrderInLayer;
+    }
+    
+    public void TakeItem(Item item)
+    {
+        item.gameObject.SetActive(false);
+        
+        _items.Add(item);
+        OnItemAdded?.Invoke(item);
     }
 }
