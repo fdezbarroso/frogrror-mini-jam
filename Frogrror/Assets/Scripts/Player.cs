@@ -4,10 +4,13 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 5.0f;
+    [SerializeField] private int _hiddenOrderInLayer = -1;
 
     private InputAction _moveAction;
     private InputAction _interactAction;
     private SpriteRenderer _spriteRenderer;
+    
+    private int _originalOrderInLayer;
     
     private InteractableHandler _interactableHandler;
     
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
         _moveAction = InputSystem.actions.FindAction("Move");
         _interactAction = InputSystem.actions.FindAction("Jump");
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _originalOrderInLayer =  _spriteRenderer.sortingOrder;
     }
 
     private void Update()
@@ -78,22 +82,22 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out InteractableHandler interactableHandler))
+        if (other.TryGetComponent(out InteractableHandler interactableHandler) && _interactableHandler != interactableHandler)
         {
-            _interactableHandler = interactableHandler;
             _interactableHandler.HideInstructions();
+            _interactableHandler = null;
         }
     }
 
     public void Hide()
     {
         IsHiding = true;
-        _spriteRenderer.enabled = false;
+        _spriteRenderer.sortingOrder = _hiddenOrderInLayer;
     }
 
     public void Show()
     {
         IsHiding = false;
-        _spriteRenderer.enabled = true;
+        _spriteRenderer.sortingOrder = _originalOrderInLayer;
     }
 }
