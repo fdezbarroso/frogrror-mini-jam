@@ -2,6 +2,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
+    string GetName();
     void Interact();
 }
 
@@ -16,16 +17,17 @@ public class InteractableHandler : MonoBehaviour
 
     public void ShowInstructions()
     {
-        Debug.LogError("Press A.");
+        Debug.LogError($"Press SPACE to interact with {_interactable.GetName()}");
     }
 
     public void HideInstructions()
     {
-        Debug.LogError("Nothing.");
+        
     }
 
     public void Interact()
     {
+        HideInstructions();
         _interactable.Interact();
     }
 }

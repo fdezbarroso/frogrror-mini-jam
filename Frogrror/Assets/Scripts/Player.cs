@@ -33,10 +33,21 @@ public class Player : MonoBehaviour
     private void Move()
     {
         var moveValue = _moveAction.ReadValue<Vector2>();
-        
         if (!CanMoveVertically())
         {
             moveValue.y = 0f;
+        }
+        
+        var absX = Mathf.Abs(moveValue.x);
+        var absY = Mathf.Abs(moveValue.y);
+
+        if (absX >= absY)
+        {
+            moveValue.y = 0f;
+        }
+        else
+        {
+            moveValue.x = 0f;
         }
         
         transform.position += (Vector3)moveValue * (_speed * Time.deltaTime);
@@ -49,9 +60,8 @@ public class Player : MonoBehaviour
 
     private bool CanMoveVertically()
     {
-        return false;
+        return true;
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {

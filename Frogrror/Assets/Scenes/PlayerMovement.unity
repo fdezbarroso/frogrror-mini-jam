@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 1756833294}
   - component: {fileID: 1756833296}
   m_Layer: 0
-  m_Name: Interactable
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
