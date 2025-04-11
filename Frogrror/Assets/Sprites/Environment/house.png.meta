@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3339bd93976b541469837f11713a1014
+guid: e859b6bb5634e2d478e27bb464c97267
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5179458534442252796
-    second: bambo2o_0
+      213: -1923994175756728024
+    second: house_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bambo2o_0
+      name: house_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 123
+        width: 128
+        height: 128
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40644b5a7edde18b0800000000000000
-      internalID: -5179458534442252796
+      spriteID: 829891cad799c45e0800000000000000
+      internalID: -1923994175756728024
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a7dbaa12e52a1c344b1b69bb70b0d023
+    spriteID: 593a1bca26ad8ff4fbededec70bbb2eb
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bambo2o_0: -5179458534442252796
+      house_0: -1923994175756728024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

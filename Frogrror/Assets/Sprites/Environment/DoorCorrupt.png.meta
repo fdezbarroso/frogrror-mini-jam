@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3339bd93976b541469837f11713a1014
+guid: 16a8c67e27e497b44a0c2c917fb8c934
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5179458534442252796
-    second: bambo2o_0
+      213: -5172279410985482618
+    second: DoorCorrupt_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bambo2o_0
+      name: DoorCorrupt_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 123
+        width: 128
+        height: 120
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40644b5a7edde18b0800000000000000
-      internalID: -5179458534442252796
+      spriteID: 686c425974f5838b0800000000000000
+      internalID: -5172279410985482618
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a7dbaa12e52a1c344b1b69bb70b0d023
+    spriteID: 7c65a518d7ce57d45933f45c7d7a27ad
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bambo2o_0: -5179458534442252796
+      DoorCorrupt_0: -5172279410985482618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
