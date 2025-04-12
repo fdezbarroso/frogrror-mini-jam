@@ -17,7 +17,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     }
 
     public float attackRange = 1.0f;
-    public float attackDelay = 0.5f;
+    public float attackDelay = 1.0f;
 
     public float detectionRange = 3.0f;
     public float suspiciousRange = 5.0f;
@@ -52,6 +52,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     private Vector2 _startingPosition;
 
     private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
     private Vector3 _originalSpritePosition;
 
     private void Start()
@@ -61,6 +62,8 @@ public class BasicEnemyBehavior : MonoBehaviour
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _originalSpritePosition = _spriteRenderer.transform.localPosition;
 
+        _animator = GetComponentInChildren<Animator>();
+
         _startingPosition = transform.position;
 
         ChangeState(state);
@@ -68,7 +71,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (!_player || !_enemyData || !_spriteRenderer)
+        if (!_player || !_enemyData || !_spriteRenderer || _player.IsDead)
         {
             return;
         }
@@ -210,6 +213,13 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void ExecuteState()
     {
+        StopAnimation("Move");
+
+        if (state != EnemyState.Chase)
+        {
+            StopAnimation("Chase");
+        }
+
         switch (state)
         {
             case EnemyState.Idle:
@@ -253,7 +263,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     {
         if (patrolPoints.Length == 0)
         {
-            MoveTo(_startingPosition, _enemyData.walkMoveSpeed);
+            MoveTo(_startingPosition, _enemyData.walkMoveSpeed, "Move");
             return;
         }
 
@@ -279,8 +289,13 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
         else
         {
-            MoveTo(targetPosition, _enemyData.walkMoveSpeed);
+            MoveTo(targetPosition, _enemyData.walkMoveSpeed, "Move");
         }
+    }
+
+    private void StopAnimation(string animationParam)
+    {
+        _animator.SetBool(animationParam, false);
     }
 
     private void SuspiciousBehavior()
@@ -289,7 +304,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
         if (distanceToLastSeen > pointArrivalThreshold)
         {
-            MoveTo(_lastKnownPlayerPosition, _enemyData.walkMoveSpeed);
+            MoveTo(_lastKnownPlayerPosition, _enemyData.walkMoveSpeed, "Move");
         }
         else
         {
@@ -307,13 +322,14 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void ChaseBehavior()
     {
-        MoveTo(_player.transform.position, _enemyData.chaseMoveSpeed);
+        MoveTo(_player.transform.position, _enemyData.chaseMoveSpeed, "Chase");
     }
 
     private void AttackBehavior()
     {
         if (_attackDelayTimer <= 0.0f)
         {
+            _animator.SetTrigger("Attack");
             _player.Kill();
             _attackDelayTimer = attackDelay;
         }
@@ -325,7 +341,8 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private bool IsPlayerVisible()
     {
-        if (!_player || !_enemyData || _player.IsHiding || _distanceToPlayer > detectionRange)
+        if (!_player || !_player.gameObject.activeInHierarchy || !_enemyData || _player.IsHiding ||
+            _distanceToPlayer > detectionRange)
         {
             return false;
         }
@@ -348,7 +365,8 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private bool IsPlayerSuspicious()
     {
-        if (!_player || !_enemyData || _player.IsHiding || _distanceToPlayer <= detectionRange ||
+        if (!_player || !_player.gameObject.activeInHierarchy || !_enemyData || _player.IsHiding ||
+            _distanceToPlayer <= detectionRange ||
             _distanceToPlayer > suspiciousRange)
         {
             return false;
@@ -370,7 +388,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
     }
 
-    private void MoveTo(Vector2 target, float speed)
+    private void MoveTo(Vector2 target, float speed, string animationParam)
     {
         Vector2 moveVector = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
@@ -381,6 +399,8 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
 
         transform.position = moveVector;
+
+        _animator.SetBool(animationParam, true);
     }
 
     private void FlipFacingDirection()
