@@ -220,7 +220,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void AttackBehavior()
     {
-        Destroy(_player.gameObject);
+        _player.Kill();
     }
 
     private bool IsPlayerVisible()

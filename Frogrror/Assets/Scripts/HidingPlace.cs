@@ -6,6 +6,7 @@ public class HidingPlace : MonoBehaviour, IInteractable
     [SerializeField] private float _playerHiddenAlpha = 0.5f;
     [SerializeField] private float _fadeDuration = 0.25f;
     [SerializeField] private Sprite _playerHiddenSprite;
+    [SerializeField] private AudioClip _playerHidingSound;
     
     private SpriteRenderer _spriteRenderer;
     private Sprite _originalSprite;
@@ -37,5 +38,7 @@ public class HidingPlace : MonoBehaviour, IInteractable
             _spriteRenderer.DOFade( _playerHiddenAlpha, _fadeDuration);
             _spriteRenderer.sprite = _playerHiddenSprite;
         }
+        
+        AudioManager.Instance.PlaySoundEffect(_playerHidingSound);
     }
 }

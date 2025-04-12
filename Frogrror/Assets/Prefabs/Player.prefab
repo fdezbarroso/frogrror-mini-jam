@@ -50,6 +50,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _hiddenOrderInLayer: -1
+  _footStepSounds:
+  - {fileID: 8300000, guid: 26959a9eddbf4c941b5f5f642128f6ad, type: 3}
+  - {fileID: 8300000, guid: a5d9014c567ff4742a887c31f42eba4b, type: 3}
+  - {fileID: 8300000, guid: 04db77c86a2957048ac97fdd8bb2afb7, type: 3}
+  _footStepDelay: 0.3
 --- !u!212 &3412266436556491224
 SpriteRenderer:
   m_ObjectHideFlags: 0
