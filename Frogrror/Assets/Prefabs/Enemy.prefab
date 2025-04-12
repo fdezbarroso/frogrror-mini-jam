@@ -145,6 +145,7 @@ MonoBehaviour:
   - {fileID: 0}
   state: 0
   pointArrivalThreshold: 0.1
+  _chaseSound: {fileID: 8300000, guid: 6ed9ccf9a88af684aa9b91fa8c18ff9f, type: 3}
 --- !u!114 &1311592070614952007
 MonoBehaviour:
   m_ObjectHideFlags: 0

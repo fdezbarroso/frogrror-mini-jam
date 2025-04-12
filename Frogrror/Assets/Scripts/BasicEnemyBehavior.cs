@@ -36,6 +36,8 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     [SerializeField] private float pointArrivalThreshold = 0.1f;
 
+    [SerializeField] private AudioClip _chaseSound;
+
     private BasicEnemy _enemyData;
     private Player _player;
     private Light2D _visionCone;
@@ -172,9 +174,9 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Attack:
-                if (_distanceToPlayer > attackRange)
+                if (_attackDelayTimer <= 0f)
                 {
-                    ChangeState(EnemyState.Chase);
+                    ChangeState(EnemyState.Idle);
                 }
 
                 break;
@@ -188,6 +190,11 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void ChangeState(EnemyState newState)
     {
+        if (state == newState)
+        {
+            return;
+        }
+        
         if (state == EnemyState.Chase && newState == EnemyState.Suspicious)
         {
             _lastKnownPlayerPosition = _player.transform.position;
@@ -223,10 +230,15 @@ public class BasicEnemyBehavior : MonoBehaviour
 
             case EnemyState.Chase:
                 Debug.Log("State: Chase");
+                
+                AudioManager.Instance.PlaySoundEffect(_chaseSound);
                 break;
 
             case EnemyState.Attack:
                 Debug.Log("State: Attack");
+                
+                _animator.SetTrigger("Attack");
+                
                 _attackDelayTimer = attackDelay;
                 break;
 
@@ -363,15 +375,14 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void AttackBehavior()
     {
+        _attackDelayTimer -= Time.deltaTime;
+
         if (_attackDelayTimer <= 0.0f)
         {
-            _animator.SetTrigger("Attack");
-            _player.Kill();
-            _attackDelayTimer = attackDelay;
-        }
-        else
-        {
-            _attackDelayTimer -= Time.deltaTime;
+            if (_distanceToPlayer <= attackRange)
+            {
+                _player.Kill();
+            }
         }
     }
 
