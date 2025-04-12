@@ -60,9 +60,18 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (patrolPoints.Length > 0)
+                else if (patrolPoints.Length > 1)
                 {
                     ChangeState(EnemyState.Patrol);
+                }
+                else if (patrolPoints.Length == 1)
+                {
+                    float distanceToTarget = Vector2.Distance(transform.position, patrolPoints[0].transform.position);
+
+                    if (distanceToTarget > patrolPointArrivalThreshold)
+                    {
+                        ChangeState(EnemyState.Patrol);
+                    }
                 }
 
                 break;
@@ -72,7 +81,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (patrolPoints.Length == 0)
+                else if (patrolPoints.Length == 0 || (patrolPoints.Length == 1 && _isWaitingAtPatrolPoint))
                 {
                     ChangeState(EnemyState.Idle);
                 }
@@ -119,7 +128,6 @@ public class BasicEnemyBehavior : MonoBehaviour
             case EnemyState.Patrol:
                 Debug.Log("State: Patrol");
                 _isWaitingAtPatrolPoint = false;
-                _patrolPointWaitTimer = 0f;
                 break;
 
             case EnemyState.Chase:
@@ -197,13 +205,14 @@ public class BasicEnemyBehavior : MonoBehaviour
 
             if (_patrolPointWaitTimer <= 0)
             {
+                _lastPatrolPointIndex = (_lastPatrolPointIndex + 1) % patrolPoints.Length;
+
                 _isWaitingAtPatrolPoint = false;
                 _patrolPointWaitTimer = patrolPointWaitTime;
             }
         }
         else if (distanceToTarget <= patrolPointArrivalThreshold)
         {
-            _lastPatrolPointIndex = (_lastPatrolPointIndex + 1) % patrolPoints.Length;
             _isWaitingAtPatrolPoint = true;
             _patrolPointWaitTimer = patrolPointWaitTime;
         }
