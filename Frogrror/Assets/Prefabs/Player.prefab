@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a5d9014c567ff4742a887c31f42eba4b, type: 3}
   - {fileID: 8300000, guid: 04db77c86a2957048ac97fdd8bb2afb7, type: 3}
   _footStepDelay: 0.3
+  _deathSound: {fileID: 8300000, guid: 4814838ed080d9248b9fcba7e83f49d0, type: 3}
   _lanternLight: {fileID: 2196891040545299207}
   _normalLightContainer: {fileID: 6036017759199461645}
   _flippedLightContainer: {fileID: 4626765982423362058}

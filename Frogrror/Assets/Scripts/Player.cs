@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     
     [SerializeField] private List<AudioClip> _footStepSounds = new List<AudioClip>();
     [SerializeField] private float _footStepDelay = 0.2f;
+    
+    [SerializeField] private AudioClip _deathSound;
 
     [SerializeField] private GameObject _lanternLight;
     [SerializeField] private Transform _normalLightContainer;
@@ -220,6 +222,8 @@ public class Player : MonoBehaviour
         IsDead = true;
         
         _animator.SetTrigger("Dead");
+        
+        AudioManager.Instance.PlaySoundEffect(_deathSound);
         
         GameplayManager.Instance.GameOver();
 
