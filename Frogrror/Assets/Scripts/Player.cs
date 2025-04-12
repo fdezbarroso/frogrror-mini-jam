@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     public event Action<Item> OnItemAdded;
     
     public bool IsHiding { get; private set; }
+    
+    public bool IsDead { get; private set; }
 
     private float _footStepTimer;
 
@@ -171,6 +173,8 @@ public class Player : MonoBehaviour
 
     public void Kill()
     {
+        IsDead = true;
+        
         GameplayManager.Instance.GameOver();
     }
 
