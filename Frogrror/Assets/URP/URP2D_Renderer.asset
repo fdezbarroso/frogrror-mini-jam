@@ -46,10 +46,24 @@ MonoBehaviour:
     blendMode: 0
   m_UseDepthStencilBuffer: 1
   m_UseCameraSortingLayersTexture: 0
-  m_CameraSortingLayersTextureBound: 0
+  m_CameraSortingLayersTextureBound: -1
   m_CameraSortingLayerDownsamplingMethod: 0
   m_MaxLightRenderTextureCount: 16
   m_MaxShadowRenderTextureCount: 1
   m_PostProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_DefaultMaterialType: 0
   m_DefaultCustomMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+--- !u!114 &2193706628165173483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813fbeeb169c2184cab9204d703fdda4, type: 3}
+  m_Name: FogPostProcessEffect
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  fogMaterial: {fileID: 2100000, guid: a9e8ce2e4e3373346a49d64309367f86, type: 2}
