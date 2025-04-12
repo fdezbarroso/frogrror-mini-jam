@@ -8,6 +8,7 @@ public class GameplayManager : MonoBehaviour
     
     [Header("UI")]
     [SerializeField] private DialogueUI _dialogueUI;
+    [SerializeField] private GameOverScreen _gameOverScreen;
     
     public Player Player => _player;
     public DialogueUI DialogueUI => _dialogueUI;
@@ -22,5 +23,15 @@ public class GameplayManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void GameOver()
+    {
+        if (_gameOverScreen == null)
+        {
+            return;
+        }
+        
+        _gameOverScreen.Show();
     }
 }

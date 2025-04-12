@@ -123,4 +123,9 @@ public class Player : MonoBehaviour
         _items.Add(item);
         OnItemAdded?.Invoke(item);
     }
+
+    public void Kill()
+    {
+        GameplayManager.Instance.GameOver();
+    }
 }
