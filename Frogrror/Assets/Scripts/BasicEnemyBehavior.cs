@@ -1,5 +1,7 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BasicEnemyBehavior : MonoBehaviour
 {
@@ -14,13 +16,19 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     public float attackRange = 1.0f;
     public float detectionRange = 3.0f;
+    public float suspiciousRange = 5.0f;
+    public float hearingRange = 2.0f;
     public float idleDirectionChangeTime = 3.0f;
     public float patrolPointWaitTime = 2.0f;
+    public float suspiciousLookAroundTime = 1.0f;
+
+    public int suspiciousLookAroundCount = 3;
 
     public PatrolPoint[] patrolPoints;
 
     [SerializeField] private EnemyState state = EnemyState.Idle;
-    [SerializeField] private float patrolPointArrivalThreshold = 0.1f;
+
+    [SerializeField] private float pointArrivalThreshold = 0.1f;
 
     private BasicEnemy _enemyData;
     private Player _player;
@@ -28,10 +36,15 @@ public class BasicEnemyBehavior : MonoBehaviour
     private float _distanceToPlayer = 0.0f;
     private float _idleDirectionTimer = 0.0f;
     private float _patrolPointWaitTimer = 0.0f;
+    private float _suspiciousLookAroundTimer = 0.0f;
 
     private int _lastPatrolPointIndex = 0;
+    private int _suspiciousLookCount = 0;
 
     private bool _isWaitingAtPatrolPoint = false;
+
+    private Vector2 _lastKnownPlayerPosition;
+    private Vector2 _startingPosition;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -40,13 +53,14 @@ public class BasicEnemyBehavior : MonoBehaviour
         _enemyData = GetComponent<BasicEnemy>();
         _player = GameplayManager.Instance.Player;
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _startingPosition = transform.position;
 
         ChangeState(state);
     }
 
     private void Update()
     {
-        if (!_player)
+        if (!_player || !_enemyData || !_spriteRenderer)
         {
             return;
         }
@@ -60,6 +74,10 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
+                else if (IsPlayerSuspicious() || _distanceToPlayer < hearingRange)
+                {
+                    ChangeState(EnemyState.Suspicious);
+                }
                 else if (patrolPoints.Length > 1)
                 {
                     ChangeState(EnemyState.Patrol);
@@ -68,7 +86,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     float distanceToTarget = Vector2.Distance(transform.position, patrolPoints[0].transform.position);
 
-                    if (distanceToTarget > patrolPointArrivalThreshold)
+                    if (distanceToTarget > pointArrivalThreshold)
                     {
                         ChangeState(EnemyState.Patrol);
                     }
@@ -81,9 +99,32 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (patrolPoints.Length == 0 || (patrolPoints.Length == 1 && _isWaitingAtPatrolPoint))
+                else if (IsPlayerSuspicious() || _distanceToPlayer < hearingRange)
+                {
+                    ChangeState(EnemyState.Suspicious);
+                }
+                else if (patrolPoints.Length == 0)
+                {
+                    if (Vector2.Distance(transform.position, _startingPosition) <= pointArrivalThreshold)
+                    {
+                        ChangeState(EnemyState.Idle);
+                    }
+                }
+                else if (patrolPoints.Length == 1 && _isWaitingAtPatrolPoint)
                 {
                     ChangeState(EnemyState.Idle);
+                }
+
+                break;
+
+            case EnemyState.Suspicious:
+                if (IsPlayerVisible())
+                {
+                    ChangeState(EnemyState.Chase);
+                }
+                else if (_suspiciousLookCount >= suspiciousLookAroundCount)
+                {
+                    ChangeState(EnemyState.Patrol);
                 }
 
                 break;
@@ -95,7 +136,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 }
                 else if (!IsPlayerVisible())
                 {
-                    ChangeState(patrolPoints.Length > 0 ? EnemyState.Patrol : EnemyState.Idle);
+                    ChangeState(EnemyState.Suspicious);
                 }
 
                 break;
@@ -123,11 +164,26 @@ public class BasicEnemyBehavior : MonoBehaviour
         {
             case EnemyState.Idle:
                 Debug.Log("State: Idle");
+
+                _idleDirectionTimer = idleDirectionChangeTime;
                 break;
 
             case EnemyState.Patrol:
                 Debug.Log("State: Patrol");
+
                 _isWaitingAtPatrolPoint = false;
+                break;
+
+            case EnemyState.Suspicious:
+                Debug.Log("State: Suspicious");
+
+                if (IsPlayerSuspicious())
+                {
+                    _lastKnownPlayerPosition = _player.transform.position;
+                }
+
+                _suspiciousLookAroundTimer = suspiciousLookAroundTime;
+                _suspiciousLookCount = 0;
                 break;
 
             case EnemyState.Chase:
@@ -155,6 +211,10 @@ public class BasicEnemyBehavior : MonoBehaviour
                 PatrolBehavior();
                 break;
 
+            case EnemyState.Suspicious:
+                SuspiciousBehavior();
+                break;
+
             case EnemyState.Chase:
                 ChaseBehavior();
                 break;
@@ -174,16 +234,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
         if (_idleDirectionTimer <= 0)
         {
-            if (_enemyData.facingDirection == BasicEnemy.FacingDirection.Left)
-            {
-                _spriteRenderer.flipX = true;
-                _enemyData.facingDirection = BasicEnemy.FacingDirection.Right;
-            }
-            else if (_enemyData.facingDirection == BasicEnemy.FacingDirection.Right)
-            {
-                _spriteRenderer.flipX = false;
-                _enemyData.facingDirection = BasicEnemy.FacingDirection.Left;
-            }
+            FlipFacingDirection();
 
             _idleDirectionTimer = idleDirectionChangeTime;
         }
@@ -193,6 +244,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     {
         if (patrolPoints.Length == 0)
         {
+            MoveTo(_startingPosition, _enemyData.walkMoveSpeed);
             return;
         }
 
@@ -211,7 +263,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 _patrolPointWaitTimer = patrolPointWaitTime;
             }
         }
-        else if (distanceToTarget <= patrolPointArrivalThreshold)
+        else if (distanceToTarget <= pointArrivalThreshold)
         {
             _isWaitingAtPatrolPoint = true;
             _patrolPointWaitTimer = patrolPointWaitTime;
@@ -219,6 +271,28 @@ public class BasicEnemyBehavior : MonoBehaviour
         else
         {
             MoveTo(targetPosition, _enemyData.walkMoveSpeed);
+        }
+    }
+
+    private void SuspiciousBehavior()
+    {
+        float distanceToLastSeen = Vector2.Distance(transform.position, _lastKnownPlayerPosition);
+
+        if (distanceToLastSeen > pointArrivalThreshold)
+        {
+            MoveTo(_lastKnownPlayerPosition, _enemyData.walkMoveSpeed);
+        }
+        else
+        {
+            if (_suspiciousLookAroundTimer <= 0.0f)
+            {
+                FlipFacingDirection();
+
+                _suspiciousLookCount++;
+                _suspiciousLookAroundTimer = suspiciousLookAroundTime;
+            }
+
+            _suspiciousLookAroundTimer -= Time.deltaTime;
         }
     }
 
@@ -255,21 +329,54 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
     }
 
+    private bool IsPlayerSuspicious()
+    {
+        if (!_player || !_enemyData || _player.IsHiding || _distanceToPlayer <= detectionRange ||
+            _distanceToPlayer > suspiciousRange)
+        {
+            return false;
+        }
+
+        switch (_enemyData.facingDirection)
+        {
+            case BasicEnemy.FacingDirection.Left:
+                return transform.position.x > _player.transform.position.x;
+
+            case BasicEnemy.FacingDirection.Right:
+                return transform.position.x <= _player.transform.position.x;
+
+            case BasicEnemy.FacingDirection.Back:
+                return false;
+
+            default:
+                return false;
+        }
+    }
+
     private void MoveTo(Vector2 target, float speed)
     {
         Vector2 moveVector = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        if (moveVector.x > transform.position.x)
+        if ((moveVector.x > transform.position.x && _enemyData.facingDirection == BasicEnemy.FacingDirection.Left) ||
+            (moveVector.x < transform.position.x && _enemyData.facingDirection == BasicEnemy.FacingDirection.Right))
+        {
+            FlipFacingDirection();
+        }
+
+        transform.position = moveVector;
+    }
+
+    private void FlipFacingDirection()
+    {
+        if (_enemyData.facingDirection == BasicEnemy.FacingDirection.Left)
         {
             _spriteRenderer.flipX = true;
             _enemyData.facingDirection = BasicEnemy.FacingDirection.Right;
         }
-        else if (moveVector.x < transform.position.x)
+        else if (_enemyData.facingDirection == BasicEnemy.FacingDirection.Right)
         {
             _spriteRenderer.flipX = false;
             _enemyData.facingDirection = BasicEnemy.FacingDirection.Left;
         }
-
-        transform.position = moveVector;
     }
 }
