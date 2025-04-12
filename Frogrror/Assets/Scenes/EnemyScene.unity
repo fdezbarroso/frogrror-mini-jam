@@ -494,6 +494,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3781930030052016780, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781930030052016780, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: m_Color.g
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781930030052016780, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781930030052016780, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781930030052016780, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[1]'
+      value: 466735919
+      objectReference: {fileID: 0}
+    - target: {fileID: 7039834754505616747, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7039834754505616747, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 466735919
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -518,6 +546,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2161090343383896763, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+      propertyPath: m_LightOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2161090343383896763, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2654381971760583182, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -566,9 +602,29 @@ PrefabInstance:
       propertyPath: 'patrolPoints.Array.data[1]'
       value: 
       objectReference: {fileID: 1533235369}
+    - target: {fileID: 5484112192906657039, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5484112192906657039, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 466735919
+      objectReference: {fileID: 0}
     - target: {fileID: 6973520391116881109, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973520391116881109, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773294498371726805, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8049441895783237341, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -36,6 +37,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private BasicEnemy _enemyData;
     private Player _player;
+    private Light2D _visionCone;
 
     private float _distanceToPlayer = 0.0f;
     private float _idleDirectionTimer = 0.0f;
@@ -58,20 +60,25 @@ public class BasicEnemyBehavior : MonoBehaviour
     private void Start()
     {
         _enemyData = GetComponent<BasicEnemy>();
-        _player = GameplayManager.Instance.Player;
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _visionCone = GetComponentInChildren<Light2D>();
+
+        _player = GameplayManager.Instance.Player;
         _originalSpritePosition = _spriteRenderer.transform.localPosition;
 
         _animator = GetComponentInChildren<Animator>();
 
         _startingPosition = transform.position;
 
+        _visionCone.pointLightInnerRadius = detectionRange;
+        _visionCone.pointLightOuterRadius = suspiciousRange;
+
         ChangeState(state);
     }
 
     private void Update()
     {
-        if (!_player || !_enemyData || !_spriteRenderer || _player.IsDead)
+        if (!_player || !_spriteRenderer || !_visionCone || !_enemyData || _player.IsDead)
         {
             return;
         }
@@ -418,5 +425,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation;
             _enemyData.facingDirection = BasicEnemy.FacingDirection.Left;
         }
+        
+        _visionCone.transform.Rotate(0.0f, 0.0f, 180.0f);
     }
 }
