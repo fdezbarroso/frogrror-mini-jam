@@ -5,12 +5,15 @@ public class HidingPlace : MonoBehaviour, IInteractable
 {
     [SerializeField] private float _playerHiddenAlpha = 0.5f;
     [SerializeField] private float _fadeDuration = 0.25f;
+    [SerializeField] private Sprite _playerHiddenSprite;
     
     private SpriteRenderer _spriteRenderer;
+    private Sprite _originalSprite;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _originalSprite = _spriteRenderer.sprite;
     }
 
     public string GetName()
@@ -26,11 +29,13 @@ public class HidingPlace : MonoBehaviour, IInteractable
         {
             player.Show();
             _spriteRenderer.DOFade( 1f, _fadeDuration);
+            _spriteRenderer.sprite = _originalSprite;
         }
         else
         {
             player.Hide();
             _spriteRenderer.DOFade( _playerHiddenAlpha, _fadeDuration);
+            _spriteRenderer.sprite = _playerHiddenSprite;
         }
     }
 }
