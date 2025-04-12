@@ -88,6 +88,13 @@ public class Player : MonoBehaviour
         }
 
         var movement = (Vector3)moveValue * (_speed * Time.deltaTime);
+
+        if (Physics2D.Raycast(transform.position, movement.normalized, 0.5f, 
+                1 << LayerMask.NameToLayer("NonWalkable")))
+        {
+            movement = Vector3.zero;
+        }
+        
         transform.position += movement;
 
         if (movement.magnitude > 0f)
