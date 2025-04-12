@@ -37,6 +37,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     [SerializeField] private float pointArrivalThreshold = 0.1f;
 
     [SerializeField] private AudioClip _chaseSound;
+    [SerializeField] private AudioClip _attackSound;
 
     private BasicEnemy _enemyData;
     private Player _player;
@@ -240,6 +241,8 @@ public class BasicEnemyBehavior : MonoBehaviour
                 _animator.SetTrigger("Attack");
                 
                 _attackDelayTimer = attackDelay;
+                
+                AudioManager.Instance.PlaySoundEffect(_attackSound);
                 break;
 
             default:
