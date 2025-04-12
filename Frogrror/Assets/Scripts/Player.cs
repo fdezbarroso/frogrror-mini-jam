@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
 
     private InputAction _moveAction;
     private InputAction _interactAction;
+    private InputAction _activateLampAction;
+    
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private Vector3 _originalSpritePosition;
@@ -34,12 +37,17 @@ public class Player : MonoBehaviour
 
     private float _footStepTimer;
 
+    private bool _hasLamp;
+    private bool _lampActive;
+
     private void Awake()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
         _interactAction = InputSystem.actions.FindAction("Jump");
+        _activateLampAction = InputSystem.actions.FindAction("Crouch");
+        
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _originalOrderInLayer =  _spriteRenderer.sortingOrder;
+        _originalOrderInLayer = _spriteRenderer.sortingOrder;
         _originalSpritePosition = _spriteRenderer.transform.localPosition;
         _animator = GetComponentInChildren<Animator>();
     }
@@ -51,11 +59,29 @@ public class Player : MonoBehaviour
             _interactableHandler.Interact();
             return;
         }
+
+        if (_activateLampAction.WasPerformedThisFrame())
+        {
+            ToggleLamp();
+            return;
+        }
         
         if (CanMove())
         {
             Move();
         }
+    }
+
+    private void ToggleLamp()
+    {
+        if (!_hasLamp)
+        {
+            return;
+        }
+
+        _lampActive = !_lampActive;
+        
+        _animator.SetBool("LampActive", _lampActive);
     }
 
     private void Move()
@@ -166,6 +192,11 @@ public class Player : MonoBehaviour
     public void TakeItem(Item item)
     {
         item.gameObject.SetActive(false);
+
+        if (!_hasLamp)
+        {
+            _hasLamp = item.ID == "Lamp";
+        }
         
         _items.Add(item);
         OnItemAdded?.Invoke(item);
