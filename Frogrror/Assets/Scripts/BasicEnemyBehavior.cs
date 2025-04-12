@@ -1,5 +1,4 @@
 using System;
-using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -7,7 +6,7 @@ using Vector3 = UnityEngine.Vector3;
 public class BasicEnemyBehavior : MonoBehaviour
 {
     private const float SpriteAlignmentCompensation = 0.565f;
-    
+
     public enum EnemyState
     {
         Idle,
@@ -18,6 +17,8 @@ public class BasicEnemyBehavior : MonoBehaviour
     }
 
     public float attackRange = 1.0f;
+    public float attackDelay = 0.5f;
+
     public float detectionRange = 3.0f;
     public float suspiciousRange = 5.0f;
     public float hearingRange = 2.0f;
@@ -40,6 +41,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     private float _idleDirectionTimer = 0.0f;
     private float _patrolPointWaitTimer = 0.0f;
     private float _suspiciousLookAroundTimer = 0.0f;
+    private float _attackDelayTimer = 0.0f;
 
     private int _lastPatrolPointIndex = 0;
     private int _suspiciousLookCount = 0;
@@ -57,8 +59,8 @@ public class BasicEnemyBehavior : MonoBehaviour
         _enemyData = GetComponent<BasicEnemy>();
         _player = GameplayManager.Instance.Player;
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _originalSpritePosition =  _spriteRenderer.transform.localPosition;
-        
+        _originalSpritePosition = _spriteRenderer.transform.localPosition;
+
         _startingPosition = transform.position;
 
         ChangeState(state);
@@ -198,6 +200,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
             case EnemyState.Attack:
                 Debug.Log("State: Attack");
+                _attackDelayTimer = attackDelay;
                 break;
 
             default:
@@ -309,7 +312,15 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void AttackBehavior()
     {
-        _player.Kill();
+        if (_attackDelayTimer <= 0.0f)
+        {
+            _player.Kill();
+            _attackDelayTimer = attackDelay;
+        }
+        else
+        {
+            _attackDelayTimer -= Time.deltaTime;
+        }
     }
 
     private bool IsPlayerVisible()
@@ -384,7 +395,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         {
             _spriteRenderer.flipX = true;
             _spriteRenderer.transform.localPosition =
-                _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation; 
+                _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation;
             _enemyData.facingDirection = BasicEnemy.FacingDirection.Left;
         }
     }
