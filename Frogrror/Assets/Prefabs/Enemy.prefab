@@ -101,10 +101,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e62e03cc8b65ac43810ae51f6320ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1
+  attackRange: 0.5
   detectionRange: 3
+  suspiciousRange: 7
+  hearingRange: 4
   idleDirectionChangeTime: 3
+  patrolPointWaitTime: 2
+  suspiciousLookAroundTime: 1
+  suspiciousLookAroundCount: 3
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   state: 0
+  pointArrivalThreshold: 0.1
 --- !u!114 &1311592070614952007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,4 +127,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingDirection: 0
-  moveSpeed: 3
+  walkMoveSpeed: 1.5
+  chaseMoveSpeed: 3

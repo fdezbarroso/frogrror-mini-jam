@@ -17,6 +17,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     public float attackRange = 1.0f;
     public float detectionRange = 3.0f;
     public float suspiciousRange = 5.0f;
+    public float hearingRange = 2.0f;
     public float idleDirectionChangeTime = 3.0f;
     public float patrolPointWaitTime = 2.0f;
     public float suspiciousLookAroundTime = 1.0f;
@@ -73,7 +74,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (IsPlayerSuspicious())
+                else if (IsPlayerSuspicious() || _distanceToPlayer < hearingRange)
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
@@ -98,7 +99,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (IsPlayerSuspicious())
+                else if (IsPlayerSuspicious() || _distanceToPlayer < hearingRange)
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
