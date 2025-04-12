@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IEnemyTarget
 {
     private const float SpriteAlignmentCompensation = 0.565f;
     
@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
     public event Action<Item> OnItemAdded;
     
     public bool IsHiding { get; private set; }
+
+    public GameObject GameObject => gameObject;
+    public Transform Transform => transform;
     
     public bool IsDead { get; private set; }
 

@@ -40,10 +40,11 @@ public class BasicEnemyBehavior : MonoBehaviour
     [SerializeField] private AudioClip _attackSound;
 
     private BasicEnemy _enemyData;
-    private Player _player;
+    private IEnemyTarget Target => GameplayManager.Instance.CurrentEnemyTarget;
+    
     private Light2D _visionCone;
 
-    private float _distanceToPlayer = 0.0f;
+    private float _distanceToTarget = 0.0f;
     private float _idleDirectionTimer = 0.0f;
     private float _patrolPointWaitTimer = 0.0f;
     private float _suspiciousLookAroundTimer = 0.0f;
@@ -54,7 +55,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private bool _isWaitingAtPatrolPoint = false;
 
-    private Vector2 _lastKnownPlayerPosition;
+    private Vector2 _lastKnownTargetPosition;
     private Vector2 _startingPosition;
 
     private SpriteRenderer _spriteRenderer;
@@ -77,8 +78,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         _enemyData = GetComponent<BasicEnemy>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _visionCone = GetComponentInChildren<Light2D>();
-
-        _player = GameplayManager.Instance.Player;
+        
         _originalSpritePosition = _spriteRenderer.transform.localPosition;
 
         _animator = GetComponentInChildren<Animator>();
@@ -93,12 +93,12 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (!_player || !_spriteRenderer || !_visionCone || !_enemyData || _player.IsDead)
+        if (Target == null || !_spriteRenderer || !_visionCone || !_enemyData || Target.IsDead)
         {
             return;
         }
 
-        _distanceToPlayer = Vector2.Distance(transform.position, _player.transform.position);
+        _distanceToTarget = Vector2.Distance(transform.position, Target.Transform.position);
 
         switch (state)
         {
@@ -107,7 +107,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (IsPlayerSuspicious() || _distanceToPlayer < hearingRange)
+                else if (IsPlayerSuspicious() || _distanceToTarget < hearingRange)
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
@@ -132,7 +132,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (IsPlayerSuspicious() || _distanceToPlayer < hearingRange)
+                else if (IsPlayerSuspicious() || _distanceToTarget < hearingRange)
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
@@ -163,7 +163,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Chase:
-                if (_distanceToPlayer <= attackRange)
+                if (_distanceToTarget <= attackRange)
                 {
                     ChangeState(EnemyState.Attack);
                 }
@@ -198,7 +198,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         
         if (state == EnemyState.Chase && newState == EnemyState.Suspicious)
         {
-            _lastKnownPlayerPosition = _player.transform.position;
+            _lastKnownTargetPosition = Target.Transform.position;
         }
 
         state = newState;
@@ -222,7 +222,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
                 if (IsPlayerSuspicious())
                 {
-                    _lastKnownPlayerPosition = _player.transform.position;
+                    _lastKnownTargetPosition = Target.Transform.position;
                 }
 
                 _suspiciousLookAroundTimer = suspiciousLookAroundTime;
@@ -346,16 +346,16 @@ public class BasicEnemyBehavior : MonoBehaviour
     {
         if (IsPlayerSuspicious())
         {
-            _lastKnownPlayerPosition = _player.transform.position;
+            _lastKnownTargetPosition = Target.Transform.position;
             _suspiciousLookCount = 0;
             _suspiciousLookAroundTimer = suspiciousLookAroundTime;
         }
 
-        float distanceToLastSeen = Vector2.Distance(transform.position, _lastKnownPlayerPosition);
+        float distanceToLastSeen = Vector2.Distance(transform.position, _lastKnownTargetPosition);
 
         if (distanceToLastSeen > pointArrivalThreshold)
         {
-            MoveTo(_lastKnownPlayerPosition, _enemyData.walkMoveSpeed, "Move");
+            MoveTo(_lastKnownTargetPosition, _enemyData.walkMoveSpeed, "Move");
         }
         else
         {
@@ -373,7 +373,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void ChaseBehavior()
     {
-        MoveTo(_player.transform.position, _enemyData.chaseMoveSpeed, "Chase");
+        MoveTo(Target.Transform.position, _enemyData.chaseMoveSpeed, "Chase");
     }
 
     private void AttackBehavior()
@@ -382,17 +382,17 @@ public class BasicEnemyBehavior : MonoBehaviour
 
         if (_attackDelayTimer <= 0.0f)
         {
-            if (_distanceToPlayer <= attackRange)
+            if (_distanceToTarget <= attackRange)
             {
-                _player.Kill();
+                Target.Kill();
             }
         }
     }
 
     private bool IsPlayerVisible()
     {
-        if (!_player || !_player.gameObject.activeInHierarchy || !_enemyData || _player.IsHiding ||
-            _distanceToPlayer > detectionRange)
+        if (Target == null || !Target.GameObject.activeInHierarchy || !_enemyData || Target.IsHiding ||
+            _distanceToTarget > detectionRange)
         {
             return false;
         }
@@ -400,10 +400,10 @@ public class BasicEnemyBehavior : MonoBehaviour
         switch (_enemyData.facingDirection)
         {
             case BasicEnemy.FacingDirection.Left:
-                return transform.position.x > _player.transform.position.x;
+                return transform.position.x > Target.Transform.position.x;
 
             case BasicEnemy.FacingDirection.Right:
-                return transform.position.x <= _player.transform.position.x;
+                return transform.position.x <= Target.Transform.position.x;
 
             case BasicEnemy.FacingDirection.Back:
                 return false;
@@ -415,9 +415,9 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private bool IsPlayerSuspicious()
     {
-        if (!_player || !_player.gameObject.activeInHierarchy || !_enemyData || _player.IsHiding ||
-            _distanceToPlayer <= detectionRange ||
-            _distanceToPlayer > suspiciousRange)
+        if (Target == null || !Target.GameObject.activeInHierarchy || !_enemyData || Target.IsHiding ||
+            _distanceToTarget <= detectionRange ||
+            _distanceToTarget > suspiciousRange)
         {
             return false;
         }
@@ -425,10 +425,10 @@ public class BasicEnemyBehavior : MonoBehaviour
         switch (_enemyData.facingDirection)
         {
             case BasicEnemy.FacingDirection.Left:
-                return transform.position.x > _player.transform.position.x;
+                return transform.position.x > Target.Transform.position.x;
 
             case BasicEnemy.FacingDirection.Right:
-                return transform.position.x <= _player.transform.position.x;
+                return transform.position.x <= Target.Transform.position.x;
 
             case BasicEnemy.FacingDirection.Back:
                 return false;

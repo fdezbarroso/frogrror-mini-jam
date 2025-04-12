@@ -14,6 +14,8 @@ public class GameplayManager : MonoBehaviour
     public Player Player => _player;
     public DialogueUI DialogueUI => _dialogueUI;
     public SceneChanger SceneChanger => _sceneChanger;
+    
+    public IEnemyTarget CurrentEnemyTarget { get; private set; }
 
     private void Awake()
     {
@@ -28,6 +30,8 @@ public class GameplayManager : MonoBehaviour
         }
         
         _sceneChanger = FindAnyObjectByType<SceneChanger>();
+
+        CurrentEnemyTarget = Player;
     }
 
     public void GameOver()
@@ -38,5 +42,11 @@ public class GameplayManager : MonoBehaviour
         }
         
         _gameOverScreen.Show();
+    }
+
+
+    public void SetEnemyTarget(IEnemyTarget enemyTarget)
+    {
+        CurrentEnemyTarget = enemyTarget;
     }
 }
