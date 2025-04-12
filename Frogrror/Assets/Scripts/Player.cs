@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _interactAction;
     private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
     private Vector3 _originalSpritePosition;
     
     private int _originalOrderInLayer;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _originalOrderInLayer =  _spriteRenderer.sortingOrder;
         _originalSpritePosition = _spriteRenderer.transform.localPosition;
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -90,6 +92,8 @@ public class Player : MonoBehaviour
 
         if (movement.magnitude > 0f)
         {
+            _animator.SetBool("Move", true);
+            
             if (_footStepTimer > 0f)
             {
                 _footStepTimer -= Time.deltaTime;
@@ -104,6 +108,8 @@ public class Player : MonoBehaviour
         }
         else
         {
+            _animator.SetBool("Move", false);
+            
             _footStepTimer = 0f;
         }
     }
