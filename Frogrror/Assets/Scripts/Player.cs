@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed = 5.0f;
     [SerializeField] private int _hiddenOrderInLayer = -1;
+    
+    [SerializeField] private List<AudioClip> _footStepSounds = new List<AudioClip>();
+    [SerializeField] private float _footStepDelay = 0.2f;
 
     private InputAction _moveAction;
     private InputAction _interactAction;
@@ -21,6 +25,8 @@ public class Player : MonoBehaviour
     public event Action<Item> OnItemAdded;
     
     public bool IsHiding { get; private set; }
+
+    private float _footStepTimer;
 
     private void Awake()
     {
@@ -72,8 +78,28 @@ public class Player : MonoBehaviour
         {
             _spriteRenderer.flipX = false;
         }
-        
-        transform.position += (Vector3)moveValue * (_speed * Time.deltaTime);
+
+        var movement = (Vector3)moveValue * (_speed * Time.deltaTime);
+        transform.position += movement;
+
+        if (movement.magnitude > 0f)
+        {
+            if (_footStepTimer > 0f)
+            {
+                _footStepTimer -= Time.deltaTime;
+                return;
+            }
+
+            var footStepSound = _footStepSounds[Random.Range(0, _footStepSounds.Count)];
+            var pitch = Random.Range(0.8f, 1.2f);
+            AudioManager.Instance.PlaySoundEffect(footStepSound, 0.5f, pitch);
+            
+            _footStepTimer = _footStepDelay;
+        }
+        else
+        {
+            _footStepTimer = 0f;
+        }
     }
 
     private bool CanMove()

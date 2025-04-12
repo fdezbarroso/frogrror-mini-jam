@@ -5,8 +5,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     
     [SerializeField] private AudioSource _ambienceAudioSource;
-    
-    private Camera _camera;
+    [SerializeField] private AudioSource _soundEffectAudioSource;
 
     private void Awake()
     {
@@ -19,8 +18,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
-        _camera = Camera.main;
     }
 
     public void StopAmbience()
@@ -33,8 +30,9 @@ public class AudioManager : MonoBehaviour
         _ambienceAudioSource.Play();
     }
 
-    public void PlaySoundEffect(AudioClip clip)
+    public void PlaySoundEffect(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
     {
-        AudioSource.PlayClipAtPoint(clip, _camera.transform.position);
+        _soundEffectAudioSource.pitch = pitch;
+        _soundEffectAudioSource.PlayOneShot(clip, volume);
     }
 }
