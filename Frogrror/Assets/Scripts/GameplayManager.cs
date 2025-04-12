@@ -31,7 +31,7 @@ public class GameplayManager : MonoBehaviour
         
         _sceneChanger = FindAnyObjectByType<SceneChanger>();
 
-        CurrentEnemyTarget = Player;
+        CurrentEnemyTarget = null;
     }
 
     public void GameOver()

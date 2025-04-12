@@ -107,7 +107,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (IsPlayerSuspicious() || _distanceToTarget < hearingRange)
+                else if (IsPlayerSuspicious())
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
@@ -128,11 +128,11 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Patrol:
-                if (IsPlayerVisible())
+                if (IsPlayerVisible() || _distanceToTarget < hearingRange)
                 {
                     ChangeState(EnemyState.Chase);
                 }
-                else if (IsPlayerSuspicious() || _distanceToTarget < hearingRange)
+                else if (IsPlayerSuspicious())
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
@@ -220,11 +220,7 @@ public class BasicEnemyBehavior : MonoBehaviour
             case EnemyState.Suspicious:
                 Debug.Log("State: Suspicious");
 
-                if (IsPlayerSuspicious())
-                {
-                    _lastKnownTargetPosition = Target.Transform.position;
-                }
-
+                _lastKnownTargetPosition = Target.Transform.position;
                 _suspiciousLookAroundTimer = suspiciousLookAroundTime;
                 _suspiciousLookCount = 0;
                 break;
