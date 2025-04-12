@@ -1,10 +1,13 @@
 using System;
-using Unity.VisualScripting;
+using System.Numerics;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class BasicEnemyBehavior : MonoBehaviour
 {
+    private const float SpriteAlignmentCompensation = 0.565f;
+    
     public enum EnemyState
     {
         Idle,
@@ -47,12 +50,15 @@ public class BasicEnemyBehavior : MonoBehaviour
     private Vector2 _startingPosition;
 
     private SpriteRenderer _spriteRenderer;
+    private Vector3 _originalSpritePosition;
 
     private void Start()
     {
         _enemyData = GetComponent<BasicEnemy>();
         _player = GameplayManager.Instance.Player;
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _originalSpritePosition =  _spriteRenderer.transform.localPosition;
+        
         _startingPosition = transform.position;
 
         ChangeState(state);
@@ -370,12 +376,15 @@ public class BasicEnemyBehavior : MonoBehaviour
     {
         if (_enemyData.facingDirection == BasicEnemy.FacingDirection.Left)
         {
-            _spriteRenderer.flipX = true;
+            _spriteRenderer.flipX = false;
+            _spriteRenderer.transform.localPosition = _originalSpritePosition;
             _enemyData.facingDirection = BasicEnemy.FacingDirection.Right;
         }
         else if (_enemyData.facingDirection == BasicEnemy.FacingDirection.Right)
         {
-            _spriteRenderer.flipX = false;
+            _spriteRenderer.flipX = true;
+            _spriteRenderer.transform.localPosition =
+                _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation; 
             _enemyData.facingDirection = BasicEnemy.FacingDirection.Left;
         }
     }
