@@ -10,6 +10,7 @@ public class BasicEnemy : MonoBehaviour
         Back // To use when the enemy is facing away from the scene
     }
 
-    public FacingDirection facingDirection;
-    public float moveSpeed;
+    public FacingDirection facingDirection = FacingDirection.Left;
+    public float walkMoveSpeed = 1.5f;
+    public float chaseMoveSpeed = 3.0f;
 }
