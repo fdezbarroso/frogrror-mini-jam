@@ -131,8 +131,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 32
+        y: 320
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -152,9 +152,9 @@ TextureImporter:
       name: playeranim_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
+        x: 52
+        y: 320
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -174,9 +174,9 @@ TextureImporter:
       name: playeranim_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
-        width: 32
+        x: 104
+        y: 320
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -196,9 +196,9 @@ TextureImporter:
       name: playeranim_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 128
-        width: 32
+        x: 156
+        y: 320
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -219,8 +219,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 32
+        y: 256
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -240,9 +240,9 @@ TextureImporter:
       name: playeranim_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
+        x: 52
+        y: 256
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -262,9 +262,9 @@ TextureImporter:
       name: playeranim_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
+        x: 104
+        y: 256
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -284,9 +284,9 @@ TextureImporter:
       name: playeranim_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
+        x: 156
+        y: 256
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -306,9 +306,9 @@ TextureImporter:
       name: playeranim_8
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
+        x: 0
+        y: 192
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -328,9 +328,9 @@ TextureImporter:
       name: playeranim_9
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
+        x: 52
+        y: 192
+        width: 52
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -342,6 +342,314 @@ TextureImporter:
       bones: []
       spriteID: 58400e93ba18da730800000000000000
       internalID: 4012005415467353221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_10
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 192
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98c40817b8014cd4493e78b66cb1966b
+      internalID: 1607362828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_11
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 192
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164929a61a3876f49a7114797fb440ca
+      internalID: -1845079546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_12
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 192
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f86b0206ae43f47bd9e840e8021b5b
+      internalID: -1625851341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cd083eb7b085814e836b3df8d9f2bdc
+      internalID: 1509935316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_14
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 128
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b9453e41b67aa4d8f4a6b4680698ab
+      internalID: 526255898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_15
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 128
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c630b44ccd3a08a408cb632aee29cfdc
+      internalID: -1132133426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_16
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 128
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e13efac27bba84b4d8c4e4374ad7b416
+      internalID: -1742415084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_17
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 128
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93851ce47ef4e2848920210b899a0769
+      internalID: 823484546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d159caf8f1eec47a8f56ab95def6d7
+      internalID: -1891375755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_19
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 64
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50c223e1fe723fb48b0ae17a1656759e
+      internalID: -603990665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_20
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 64
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdccb53579ee2d64589a32a44eeeb062
+      internalID: -224398995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4d2f19cc240e04449790ed5e83bf9bb
+      internalID: 1777746425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_22
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aa691b2fa17a4a48b233581c98fbaaf
+      internalID: -794781241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: playeranim_23
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 52
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a64c95dc4978c4149a4b40b254b54c8a
+      internalID: 1210546734
       vertices: []
       indices: 
       edges: []
@@ -362,7 +670,21 @@ TextureImporter:
     nameFileIdTable:
       playeranim_0: 1619374692199931909
       playeranim_1: -8592289360523339492
+      playeranim_10: 1607362828
+      playeranim_11: -1845079546
+      playeranim_12: -1625851341
+      playeranim_13: 1509935316
+      playeranim_14: 526255898
+      playeranim_15: -1132133426
+      playeranim_16: -1742415084
+      playeranim_17: 823484546
+      playeranim_18: -1891375755
+      playeranim_19: -603990665
       playeranim_2: 7424184637499427812
+      playeranim_20: -224398995
+      playeranim_21: 1777746425
+      playeranim_22: -794781241
+      playeranim_23: 1210546734
       playeranim_3: 6538699356552353056
       playeranim_4: 6548544831631442753
       playeranim_5: 7436872034851365174
