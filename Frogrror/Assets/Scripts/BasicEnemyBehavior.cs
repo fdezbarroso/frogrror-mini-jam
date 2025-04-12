@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Vector2 = UnityEngine.Vector2;
@@ -29,7 +30,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     public int suspiciousLookAroundCount = 3;
 
-    public PatrolPoint[] patrolPoints;
+    public List<PatrolPoint> patrolPoints;
 
     [SerializeField] private EnemyState state = EnemyState.Idle;
 
@@ -56,6 +57,17 @@ public class BasicEnemyBehavior : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private Vector3 _originalSpritePosition;
+
+    private void Awake()
+    {
+        for (var i = patrolPoints.Count - 1; i >= 0; i--)
+        {
+            if (patrolPoints[i] == null)
+            {
+                patrolPoints.RemoveAt(i);
+            }
+        }
+    }
 
     private void Start()
     {
@@ -96,11 +108,11 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
-                else if (patrolPoints.Length > 1)
+                else if (patrolPoints.Count > 1)
                 {
                     ChangeState(EnemyState.Patrol);
                 }
-                else if (patrolPoints.Length == 1)
+                else if (patrolPoints.Count == 1)
                 {
                     float distanceToTarget = Vector2.Distance(transform.position, patrolPoints[0].transform.position);
 
@@ -121,14 +133,14 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
-                else if (patrolPoints.Length == 0)
+                else if (patrolPoints.Count == 0)
                 {
                     if (Vector2.Distance(transform.position, _startingPosition) <= pointArrivalThreshold)
                     {
                         ChangeState(EnemyState.Idle);
                     }
                 }
-                else if (patrolPoints.Length == 1 && _isWaitingAtPatrolPoint)
+                else if (patrolPoints.Count == 1 && _isWaitingAtPatrolPoint)
                 {
                     ChangeState(EnemyState.Idle);
                 }
@@ -283,13 +295,13 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void PatrolBehavior()
     {
-        if (patrolPoints.Length == 0)
+        if (patrolPoints.Count == 0)
         {
             MoveTo(_startingPosition, _enemyData.walkMoveSpeed, "Move");
             return;
         }
 
-        Vector2 targetPosition = patrolPoints[(_lastPatrolPointIndex + 1) % patrolPoints.Length].transform.position;
+        Vector2 targetPosition = patrolPoints[(_lastPatrolPointIndex + 1) % patrolPoints.Count].transform.position;
         float distanceToTarget = Vector2.Distance(transform.position, targetPosition);
 
         if (_isWaitingAtPatrolPoint)
@@ -298,7 +310,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
             if (_patrolPointWaitTimer <= 0)
             {
-                _lastPatrolPointIndex = (_lastPatrolPointIndex + 1) % patrolPoints.Length;
+                _lastPatrolPointIndex = (_lastPatrolPointIndex + 1) % patrolPoints.Count;
 
                 _isWaitingAtPatrolPoint = false;
                 _patrolPointWaitTimer = patrolPointWaitTime;

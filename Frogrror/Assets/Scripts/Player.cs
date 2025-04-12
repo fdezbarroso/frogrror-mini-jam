@@ -219,7 +219,11 @@ public class Player : MonoBehaviour
     {
         IsDead = true;
         
+        _animator.SetTrigger("Dead");
+        
         GameplayManager.Instance.GameOver();
+
+        enabled = false;
     }
 
     public void Teleport(Vector3 position)
