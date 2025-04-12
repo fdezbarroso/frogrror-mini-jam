@@ -9,9 +9,11 @@ public class GameplayManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private DialogueUI _dialogueUI;
     [SerializeField] private GameOverScreen _gameOverScreen;
+    [SerializeField] private SceneChanger _sceneChanger;
     
     public Player Player => _player;
     public DialogueUI DialogueUI => _dialogueUI;
+    public SceneChanger SceneChanger => _sceneChanger;
 
     private void Awake()
     {
@@ -22,7 +24,10 @@ public class GameplayManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
+        
+        _sceneChanger = FindAnyObjectByType<SceneChanger>();
     }
 
     public void GameOver()

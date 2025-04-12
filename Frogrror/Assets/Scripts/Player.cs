@@ -128,4 +128,9 @@ public class Player : MonoBehaviour
     {
         GameplayManager.Instance.GameOver();
     }
+
+    public void Teleport(Vector3 position)
+    {
+        transform.position = position;
+    }
 }

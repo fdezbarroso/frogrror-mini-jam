@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -27,7 +26,6 @@ public class GameOverScreen : MonoBehaviour
         sequence.AppendCallback(() =>
         {
             _buttonsContainer.gameObject.SetActive(true);
-            _canvasGroup.blocksRaycasts = true;
             EventSystem.current.SetSelectedGameObject(_retryButton.gameObject);
         });
     }
