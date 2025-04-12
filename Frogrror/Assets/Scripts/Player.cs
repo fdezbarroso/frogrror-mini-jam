@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
+    private const float SpriteAlignmentCompensation = 0.565f;
+    
     [SerializeField] private float _speed = 5.0f;
     [SerializeField] private int _hiddenOrderInLayer = -1;
     
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _interactAction;
     private SpriteRenderer _spriteRenderer;
+    private Vector3 _originalSpritePosition;
     
     private int _originalOrderInLayer;
     
@@ -32,8 +35,9 @@ public class Player : MonoBehaviour
     {
         _moveAction = InputSystem.actions.FindAction("Move");
         _interactAction = InputSystem.actions.FindAction("Jump");
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _originalOrderInLayer =  _spriteRenderer.sortingOrder;
+        _originalSpritePosition = _spriteRenderer.transform.localPosition;
     }
 
     private void Update()
@@ -70,13 +74,15 @@ public class Player : MonoBehaviour
             moveValue.x = 0f;
         }
 
-        if (moveValue.x > 0f)
-        {
-            _spriteRenderer.flipX = true;
-        }
-        else if (moveValue.x < 0f)
+        if (moveValue.x > 0f && _spriteRenderer.flipX)
         {
             _spriteRenderer.flipX = false;
+            _spriteRenderer.transform.localPosition = _originalSpritePosition;
+        }
+        else if (moveValue.x < 0f && !_spriteRenderer.flipX)
+        {
+            _spriteRenderer.flipX = true;
+            _spriteRenderer.transform.localPosition = _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation;
         }
 
         var movement = (Vector3)moveValue * (_speed * Time.deltaTime);
