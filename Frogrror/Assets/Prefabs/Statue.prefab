@@ -164,7 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHiddenAlpha: 0.75
   _fadeDuration: 0.25
-  _playerHiddenSprite: {fileID: 0}
+  _playerHiddenSprite: {fileID: -556654112413417461, guid: 736028b46a855ed47a59f3e4417fc004, type: 3}
+  _playerHidingSound: {fileID: 8300000, guid: 261627cb40ce4554e802b677529c789d, type: 3}
 --- !u!1001 &5211691203028268164
 PrefabInstance:
   m_ObjectHideFlags: 0
