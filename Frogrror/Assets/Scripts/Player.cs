@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -7,13 +8,13 @@ using Random = UnityEngine.Random;
 public class Player : MonoBehaviour, IEnemyTarget
 {
     private const float SpriteAlignmentCompensation = 0.565f;
-    
+
     [SerializeField] private float _speed = 5.0f;
     [SerializeField] private int _hiddenOrderInLayer = -1;
-    
+
     [SerializeField] private List<AudioClip> _footStepSounds = new List<AudioClip>();
     [SerializeField] private float _footStepDelay = 0.2f;
-    
+
     [SerializeField] private AudioClip _deathSound;
 
     [SerializeField] private GameObject _lanternLight;
@@ -23,24 +24,24 @@ public class Player : MonoBehaviour, IEnemyTarget
     private InputAction _moveAction;
     private InputAction _interactAction;
     private InputAction _activateLampAction;
-    
+
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private Vector3 _originalSpritePosition;
-    
+
     private int _originalOrderInLayer;
-    
+
     private InteractableHandler _interactableHandler;
-    
+
     private readonly List<Item> _items = new List<Item>();
-    
+
     public event Action<Item> OnItemAdded;
-    
+
     public bool IsHiding { get; private set; }
 
     public GameObject GameObject => gameObject;
     public Transform Transform => transform;
-    
+
     public bool IsDead { get; private set; }
 
     private float _footStepTimer;
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         _moveAction = InputSystem.actions.FindAction("Move");
         _interactAction = InputSystem.actions.FindAction("Jump");
         _activateLampAction = InputSystem.actions.FindAction("Crouch");
-        
+
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _originalOrderInLayer = _spriteRenderer.sortingOrder;
         _originalSpritePosition = _spriteRenderer.transform.localPosition;
@@ -77,7 +78,7 @@ public class Player : MonoBehaviour, IEnemyTarget
             ToggleLamp();
             return;
         }
-        
+
         if (CanMove())
         {
             Move();
@@ -92,7 +93,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         }
 
         _lampActive = !_lampActive;
-        
+
         _animator.SetBool("LampActive", _lampActive);
         _lanternLight.SetActive(_lampActive);
     }
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         {
             moveValue.y = 0f;
         }
-        
+
         var absX = Mathf.Abs(moveValue.x);
         var absY = Mathf.Abs(moveValue.y);
 
@@ -126,27 +127,28 @@ public class Player : MonoBehaviour, IEnemyTarget
         else if (moveValue.x < 0f && !_spriteRenderer.flipX)
         {
             _spriteRenderer.flipX = true;
-            _spriteRenderer.transform.localPosition = _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation;
+            _spriteRenderer.transform.localPosition =
+                _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation;
             _lanternContainer = _flippedLightContainer;
         }
-        
+
         _lanternLight.transform.SetParent(_lanternContainer);
         _lanternLight.transform.localPosition = Vector3.zero;
 
         var movement = (Vector3)moveValue * (_speed * Time.deltaTime);
 
-        if (Physics2D.Raycast(transform.position, movement.normalized, 0.5f, 
+        if (Physics2D.Raycast(transform.position, movement.normalized, 0.5f,
                 1 << LayerMask.NameToLayer("NonWalkable")))
         {
             movement = Vector3.zero;
         }
-        
+
         transform.position += movement;
 
         if (movement.magnitude > 0f)
         {
             _animator.SetBool("Move", true);
-            
+
             if (_footStepTimer > 0f)
             {
                 _footStepTimer -= Time.deltaTime;
@@ -156,13 +158,13 @@ public class Player : MonoBehaviour, IEnemyTarget
             var footStepSound = _footStepSounds[Random.Range(0, _footStepSounds.Count)];
             var pitch = Random.Range(0.8f, 1.2f);
             AudioManager.Instance.PlaySoundEffect(footStepSound, 0.5f, pitch);
-            
+
             _footStepTimer = _footStepDelay;
         }
         else
         {
             _animator.SetBool("Move", false);
-            
+
             _footStepTimer = 0f;
         }
     }
@@ -188,7 +190,8 @@ public class Player : MonoBehaviour, IEnemyTarget
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out InteractableHandler interactableHandler) && _interactableHandler == interactableHandler)
+        if (other.TryGetComponent(out InteractableHandler interactableHandler) &&
+            _interactableHandler == interactableHandler)
         {
             _interactableHandler.HideInstructions();
             _interactableHandler = null;
@@ -206,7 +209,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         IsHiding = false;
         _spriteRenderer.sortingOrder = _originalOrderInLayer;
     }
-    
+
     public void TakeItem(Item item)
     {
         item.gameObject.SetActive(false);
@@ -215,7 +218,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         {
             _hasLamp = item.ID == "Lamp";
         }
-        
+
         _items.Add(item);
         OnItemAdded?.Invoke(item);
     }
@@ -223,11 +226,11 @@ public class Player : MonoBehaviour, IEnemyTarget
     public void Kill()
     {
         IsDead = true;
-        
+
         _animator.SetTrigger("Dead");
-        
+
         AudioManager.Instance.PlaySoundEffect(_deathSound);
-        
+
         GameplayManager.Instance.GameOver();
 
         enabled = false;
@@ -236,5 +239,10 @@ public class Player : MonoBehaviour, IEnemyTarget
     public void Teleport(Vector3 position)
     {
         transform.position = position;
+    }
+
+    public bool HasScissors()
+    {
+        return _items.Any(i => i.ID == "Scissors");
     }
 }
