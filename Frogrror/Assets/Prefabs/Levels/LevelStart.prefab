@@ -1746,7 +1746,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2832722163828398636}
   - component: {fileID: 5745681197590277598}
-  - component: {fileID: 3340082455298685910}
   - component: {fileID: 4978189277148937508}
   - component: {fileID: 6765086480164074286}
   - component: {fileID: 2225298412158822828}
@@ -1829,21 +1828,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3340082455298685910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7805364521744637954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6536d6fa9fa4f4c8d33686c4c5d7cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _light2D: {fileID: 4077908669961784059}
-  _minIntensity: 10
-  _duration: 0.5
 --- !u!114 &4978189277148937508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2013,6 +1997,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2832722163828398636}
     m_Modifications:
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
+      objectReference: {fileID: 0}
     - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.18
@@ -2057,22 +2053,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: LanternLight
       objectReference: {fileID: 0}
+    - target: {fileID: 5774370013636397512, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
---- !u!114 &4077908669961784059 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
-  m_PrefabInstance: {fileID: 2962524844319150686}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7052685636513169513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}

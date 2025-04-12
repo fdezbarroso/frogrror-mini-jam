@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -14,6 +13,10 @@ public class Player : MonoBehaviour
     
     [SerializeField] private List<AudioClip> _footStepSounds = new List<AudioClip>();
     [SerializeField] private float _footStepDelay = 0.2f;
+
+    [SerializeField] private GameObject _lanternLight;
+    [SerializeField] private Transform _normalLightContainer;
+    [SerializeField] private Transform _flippedLightContainer;
 
     private InputAction _moveAction;
     private InputAction _interactAction;
@@ -40,6 +43,8 @@ public class Player : MonoBehaviour
     private bool _hasLamp;
     private bool _lampActive;
 
+    private Transform _lanternContainer;
+
     private void Awake()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
@@ -50,6 +55,8 @@ public class Player : MonoBehaviour
         _originalOrderInLayer = _spriteRenderer.sortingOrder;
         _originalSpritePosition = _spriteRenderer.transform.localPosition;
         _animator = GetComponentInChildren<Animator>();
+
+        _lanternContainer = _lanternLight.transform.parent;
     }
 
     private void Update()
@@ -82,6 +89,7 @@ public class Player : MonoBehaviour
         _lampActive = !_lampActive;
         
         _animator.SetBool("LampActive", _lampActive);
+        _lanternLight.SetActive(_lampActive);
     }
 
     private void Move()
@@ -108,12 +116,17 @@ public class Player : MonoBehaviour
         {
             _spriteRenderer.flipX = false;
             _spriteRenderer.transform.localPosition = _originalSpritePosition;
+            _lanternContainer = _normalLightContainer;
         }
         else if (moveValue.x < 0f && !_spriteRenderer.flipX)
         {
             _spriteRenderer.flipX = true;
             _spriteRenderer.transform.localPosition = _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation;
+            _lanternContainer = _flippedLightContainer;
         }
+        
+        _lanternLight.transform.SetParent(_lanternContainer);
+        _lanternLight.transform.localPosition = Vector3.zero;
 
         var movement = (Vector3)moveValue * (_speed * Time.deltaTime);
 
