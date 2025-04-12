@@ -71,7 +71,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         _startingPosition = transform.position;
 
         _visionCone.pointLightInnerRadius = detectionRange;
-        _visionCone.pointLightOuterRadius = suspiciousRange;
+        _visionCone.pointLightOuterRadius = suspiciousRange * 1.2f;
 
         ChangeState(state);
     }
@@ -152,7 +152,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Attack);
                 }
-                else if (!IsPlayerVisible())
+                else if (!IsPlayerVisible() && !IsPlayerSuspicious())
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
@@ -176,6 +176,11 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void ChangeState(EnemyState newState)
     {
+        if (state == EnemyState.Chase && newState == EnemyState.Suspicious)
+        {
+            _lastKnownPlayerPosition = _player.transform.position;
+        }
+
         state = newState;
 
         switch (state)
@@ -230,22 +235,32 @@ public class BasicEnemyBehavior : MonoBehaviour
         switch (state)
         {
             case EnemyState.Idle:
+                _visionCone.color = new Color(0x48 / 255.0f, 0x68 / 255.0f, 0x45 / 255.0f);
+                _visionCone.intensity = 30.0f;
                 IdleBehavior();
                 break;
 
             case EnemyState.Patrol:
+                _visionCone.color = new Color(0x48 / 255.0f, 0x68 / 255.0f, 0x45 / 255.0f);
+                _visionCone.intensity = 30.0f;
                 PatrolBehavior();
                 break;
 
             case EnemyState.Suspicious:
+                _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
+                _visionCone.intensity = 30.0f;
                 SuspiciousBehavior();
                 break;
 
             case EnemyState.Chase:
+                _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
+                _visionCone.intensity = 60.0f;
                 ChaseBehavior();
                 break;
 
             case EnemyState.Attack:
+                _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
+                _visionCone.intensity = 60.0f;
                 AttackBehavior();
                 break;
 
@@ -300,13 +315,15 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
     }
 
-    private void StopAnimation(string animationParam)
-    {
-        _animator.SetBool(animationParam, false);
-    }
-
     private void SuspiciousBehavior()
     {
+        if (IsPlayerSuspicious())
+        {
+            _lastKnownPlayerPosition = _player.transform.position;
+            _suspiciousLookCount = 0;
+            _suspiciousLookAroundTimer = suspiciousLookAroundTime;
+        }
+
         float distanceToLastSeen = Vector2.Distance(transform.position, _lastKnownPlayerPosition);
 
         if (distanceToLastSeen > pointArrivalThreshold)
@@ -425,7 +442,12 @@ public class BasicEnemyBehavior : MonoBehaviour
                 _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation;
             _enemyData.facingDirection = BasicEnemy.FacingDirection.Left;
         }
-        
+
         _visionCone.transform.Rotate(0.0f, 0.0f, 180.0f);
+    }
+
+    private void StopAnimation(string animationParam)
+    {
+        _animator.SetBool(animationParam, false);
     }
 }

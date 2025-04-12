@@ -133,9 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 0.5
   attackDelay: 0.5
-  detectionRange: 3
-  suspiciousRange: 7
-  hearingRange: 4
+  detectionRange: 2
+  suspiciousRange: 4
+  hearingRange: 3
   idleDirectionChangeTime: 3
   patrolPointWaitTime: 2
   suspiciousLookAroundTime: 1
