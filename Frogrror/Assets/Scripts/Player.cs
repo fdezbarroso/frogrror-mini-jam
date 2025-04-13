@@ -286,4 +286,9 @@ public class Player : MonoBehaviour, IEnemyTarget
     {
         StopMovementAnimation();
     }
+
+    public void Interact()
+    {
+        _animator.SetTrigger("Interact");
+    }
 }

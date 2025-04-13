@@ -33,6 +33,8 @@ public class Goat : MonoBehaviour, IInteractable
     {
         _animator.SetTrigger("Pet");
         
+        GameplayManager.Instance.Player.Interact();
+        
         GameplayManager.Instance.DialogueUI.ShowMessage(_petMessage);
     }
 }
