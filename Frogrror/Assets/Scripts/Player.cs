@@ -234,7 +234,13 @@ public class Player : MonoBehaviour, IEnemyTarget
         OnItemRemoved?.Invoke(item);
     }
 
-    public void Kill()
+    public Item GetItemById(string itemId)
+    {
+        var item = _items.Find(x => x.ID == itemId);
+        return item;
+    }
+
+    public void Kill(BasicEnemyBehavior enemy)
     {
         IsDead = true;
 

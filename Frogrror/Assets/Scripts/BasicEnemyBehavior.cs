@@ -40,7 +40,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     [SerializeField] private AudioClip _attackSound;
 
     private BasicEnemy _enemyData;
-    private IEnemyTarget Target => GameplayManager.Instance.CurrentEnemyTarget;
+    private IEnemyTarget _target;
     
     private Light2D _visionCone;
 
@@ -62,6 +62,8 @@ public class BasicEnemyBehavior : MonoBehaviour
     private Animator _animator;
     private Vector3 _originalSpritePosition;
 
+    private bool _chaseUntilKill;
+
     private void Awake()
     {
         for (var i = patrolPoints.Count - 1; i >= 0; i--)
@@ -75,6 +77,8 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void Start()
     {
+        _target = GameplayManager.Instance.Player;
+        
         _enemyData = GetComponent<BasicEnemy>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _visionCone = GetComponentInChildren<Light2D>();
@@ -93,17 +97,17 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (Target == null || !_spriteRenderer || !_visionCone || !_enemyData || Target.IsDead)
+        if (_target == null || !_spriteRenderer || !_visionCone || !_enemyData || _target.IsDead)
         {
             return;
         }
 
-        _distanceToTarget = Vector2.Distance(transform.position, Target.Transform.position);
+        _distanceToTarget = Vector2.Distance(transform.position, _target.Transform.position);
 
         switch (state)
         {
             case EnemyState.Idle:
-                if (IsPlayerVisible())
+                if (IsPlayerVisible() || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -128,7 +132,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Patrol:
-                if (IsPlayerVisible() || _distanceToTarget < hearingRange)
+                if (IsPlayerVisible() || _distanceToTarget < hearingRange || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -151,7 +155,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Suspicious:
-                if (IsPlayerVisible())
+                if (IsPlayerVisible() || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -167,7 +171,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Attack);
                 }
-                else if (!IsPlayerVisible() && !IsPlayerSuspicious())
+                else if (!_chaseUntilKill && !IsPlayerVisible() && !IsPlayerSuspicious())
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
@@ -198,7 +202,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         
         if (state == EnemyState.Chase && newState == EnemyState.Suspicious)
         {
-            _lastKnownTargetPosition = Target.Transform.position;
+            _lastKnownTargetPosition = _target.Transform.position;
         }
 
         state = newState;
@@ -220,7 +224,7 @@ public class BasicEnemyBehavior : MonoBehaviour
             case EnemyState.Suspicious:
                 Debug.Log("State: Suspicious");
 
-                _lastKnownTargetPosition = Target.Transform.position;
+                _lastKnownTargetPosition = _target.Transform.position;
                 _suspiciousLookAroundTimer = suspiciousLookAroundTime;
                 _suspiciousLookCount = 0;
                 break;
@@ -342,7 +346,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     {
         if (IsPlayerSuspicious())
         {
-            _lastKnownTargetPosition = Target.Transform.position;
+            _lastKnownTargetPosition = _target.Transform.position;
             _suspiciousLookCount = 0;
             _suspiciousLookAroundTimer = suspiciousLookAroundTime;
         }
@@ -369,7 +373,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void ChaseBehavior()
     {
-        MoveTo(Target.Transform.position, _enemyData.chaseMoveSpeed, "Chase");
+        MoveTo(_target.Transform.position, _enemyData.chaseMoveSpeed, "Chase");
     }
 
     private void AttackBehavior()
@@ -380,14 +384,14 @@ public class BasicEnemyBehavior : MonoBehaviour
         {
             if (_distanceToTarget <= attackRange)
             {
-                Target.Kill();
+                _target.Kill(this);
             }
         }
     }
 
     private bool IsPlayerVisible()
     {
-        if (Target == null || !Target.GameObject.activeInHierarchy || !_enemyData || Target.IsHiding ||
+        if (_target == null || !_target.GameObject.activeInHierarchy || !_enemyData || _target.IsHiding ||
             _distanceToTarget > detectionRange)
         {
             return false;
@@ -396,10 +400,10 @@ public class BasicEnemyBehavior : MonoBehaviour
         switch (_enemyData.facingDirection)
         {
             case BasicEnemy.FacingDirection.Left:
-                return transform.position.x > Target.Transform.position.x;
+                return transform.position.x > _target.Transform.position.x;
 
             case BasicEnemy.FacingDirection.Right:
-                return transform.position.x <= Target.Transform.position.x;
+                return transform.position.x <= _target.Transform.position.x;
 
             case BasicEnemy.FacingDirection.Back:
                 return false;
@@ -411,7 +415,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private bool IsPlayerSuspicious()
     {
-        if (Target == null || !Target.GameObject.activeInHierarchy || !_enemyData || Target.IsHiding ||
+        if (_target == null || !_target.GameObject.activeInHierarchy || !_enemyData || _target.IsHiding ||
             _distanceToTarget <= detectionRange ||
             _distanceToTarget > suspiciousRange)
         {
@@ -421,10 +425,10 @@ public class BasicEnemyBehavior : MonoBehaviour
         switch (_enemyData.facingDirection)
         {
             case BasicEnemy.FacingDirection.Left:
-                return transform.position.x > Target.Transform.position.x;
+                return transform.position.x > _target.Transform.position.x;
 
             case BasicEnemy.FacingDirection.Right:
-                return transform.position.x <= Target.Transform.position.x;
+                return transform.position.x <= _target.Transform.position.x;
 
             case BasicEnemy.FacingDirection.Back:
                 return false;
@@ -473,5 +477,11 @@ public class BasicEnemyBehavior : MonoBehaviour
     private void StopAnimation(string animationParam)
     {
         _animator.SetBool(animationParam, false);
+    }
+
+    public void SetTarget(IEnemyTarget target, bool chaseUntilKill)
+    {
+        _target = target;
+        _chaseUntilKill = chaseUntilKill;
     }
 }

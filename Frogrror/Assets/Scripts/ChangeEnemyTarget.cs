@@ -3,6 +3,7 @@ using UnityEngine;
 public class ChangeEnemyTarget : MonoBehaviour
 {
     [SerializeField] private GameObject _newTarget;
+    [SerializeField] private BasicEnemyBehavior _enemy;
 
     private IEnemyTarget _newEnemyTarget;
 
@@ -20,7 +21,7 @@ public class ChangeEnemyTarget : MonoBehaviour
     {
         if (other.gameObject == GameplayManager.Instance.Player.gameObject)
         {
-            GameplayManager.Instance.SetEnemyTarget(_newEnemyTarget);
+            _enemy.SetTarget(_newEnemyTarget, true);
         }
     }
 }

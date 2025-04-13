@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class FloatingMovement : MonoBehaviour
@@ -15,6 +14,6 @@ public class FloatingMovement : MonoBehaviour
 
     private void Update()
     {
-        transform.position = _startingPosition + Vector2.up * (amplitude * Mathf.Sin(Time.time * speed));
+        transform.localPosition = _startingPosition + Vector2.up * (amplitude * Mathf.Sin(Time.time * speed));
     }
 }

@@ -16,12 +16,17 @@ public class BasicEnemyTarget : MonoBehaviour, IEnemyTarget
         _animator = GetComponentInChildren<Animator>();
     }
     
-    public void Kill()
+    public void Kill(BasicEnemyBehavior enemy)
     {
         IsDead = true;
         
         _animator.SetTrigger("Dead");
+
+        if (_deathSound != null)
+        {
+            AudioManager.Instance.PlaySoundEffect(_deathSound);
+        }
         
-        GameplayManager.Instance.SetEnemyTarget(GameplayManager.Instance.Player);
+        enemy.SetTarget(GameplayManager.Instance.Player, false);
     }
 }

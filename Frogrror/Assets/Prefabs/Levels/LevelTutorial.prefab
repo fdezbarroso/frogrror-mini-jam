@@ -2422,6 +2422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newTarget: {fileID: 7656705820951318987}
+  _enemy: {fileID: 245199825128542789}
 --- !u!4 &3662847248381360342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3853277742814035099, guid: fbda686648603284eabc5a25ea0ad7fc, type: 3}
@@ -2622,10 +2623,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4104420746175470622, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
-      propertyPath: detectionRange
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6973520391116881109, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -2635,6 +2632,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+--- !u!114 &245199825128542789 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4104420746175470622, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
+  m_PrefabInstance: {fileID: 4292716721112747611}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e62e03cc8b65ac43810ae51f6320ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2253076672292297813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2654381971760583182, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}

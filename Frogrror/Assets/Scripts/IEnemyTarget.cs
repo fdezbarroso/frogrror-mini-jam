@@ -10,5 +10,5 @@ public interface IEnemyTarget
     
     bool IsHiding { get; }
 
-    void Kill();
+    void Kill(BasicEnemyBehavior enemy);
 }

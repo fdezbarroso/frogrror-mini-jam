@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6945569229419782209}
   - component: {fileID: 8644490670554422155}
   - component: {fileID: 8708969371213366430}
+  - component: {fileID: 4999371051792220586}
   m_Layer: 0
   m_Name: Piedra
   m_TagString: Untagged
@@ -103,9 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842ff3fa0cb1af549a77bf23639c047b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 8030771703956267667, guid: 7a45bf08f4d0c164bb7d9c80288d90cd, type: 3}
-  _pickUpMessage: You picked up a rock!
-  _id: 
+  icon: {fileID: -9152689546471649384, guid: 496b2f4d1164bea4f88223dedca8ee93, type: 3}
+  pickUpSound: {fileID: 8300000, guid: 8a4953a6e2344ba47abd3b27355f7b27, type: 3}
+  pickUpMessage: You picked up a rock!
+  id: Rock
 --- !u!114 &8644490670554422155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +167,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.78125, y: 0.5625}
   m_EdgeRadius: 0
+--- !u!50 &4999371051792220586
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319808310174431787}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &5164465566084192709
 PrefabInstance:
   m_ObjectHideFlags: 0
