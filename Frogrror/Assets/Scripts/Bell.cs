@@ -25,5 +25,10 @@ public class Bell : MonoBehaviour
             
             AudioManager.Instance.PlaySoundEffect(_bellSound);
         }
+
+        if (other.gameObject == GameplayManager.Instance.Player.gameObject)
+        {
+            _animator.SetBool("Shake", false);
+        }
     }
 }
