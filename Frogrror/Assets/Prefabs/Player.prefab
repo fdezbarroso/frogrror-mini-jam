@@ -62,6 +62,7 @@ MonoBehaviour:
   _flippedLightContainer: {fileID: 4626765982423362058}
   _secretAnimator: {fileID: 7062575577730932916}
   _lanternSpotlight: {fileID: 5953202231858122283}
+  _toggleLampSound: {fileID: 8300000, guid: 64c9055ea1d9ab84091b411d1d73c2ee, type: 3}
 --- !u!61 &5811288619699376539
 BoxCollider2D:
   m_ObjectHideFlags: 0
