@@ -39,6 +39,8 @@ public class BasicEnemyBehavior : MonoBehaviour
     [SerializeField] private AudioClip _chaseSound;
     [SerializeField] private AudioClip _attackSound;
 
+    [SerializeField] private float _maxIdleTime = 5f;
+
     private BasicEnemy _enemyData;
     private IEnemyTarget _target;
     
@@ -63,6 +65,8 @@ public class BasicEnemyBehavior : MonoBehaviour
     private Vector3 _originalSpritePosition;
 
     private bool _chaseUntilKill;
+    
+    private float _idleTimer = 0.0f;
 
     private void Awake()
     {
@@ -103,11 +107,15 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
 
         _distanceToTarget = Vector2.Distance(transform.position, _target.Transform.position);
+        
+        var verticalDistance = Mathf.Abs(transform.position.y - _target.Transform.position.y);
+        
+        _distanceToTarget += verticalDistance;
 
         switch (state)
         {
             case EnemyState.Idle:
-                if (IsPlayerVisible() || _chaseUntilKill)
+                if (IsPlayerVisible() || (_distanceToTarget < hearingRange && !_target.IsHiding) || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -115,7 +123,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 {
                     ChangeState(EnemyState.Suspicious);
                 }
-                else if (patrolPoints.Count > 1)
+                else if (patrolPoints.Count > 1 || _idleTimer >= _maxIdleTime)
                 {
                     ChangeState(EnemyState.Patrol);
                 }
@@ -132,7 +140,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Patrol:
-                if (IsPlayerVisible() || _distanceToTarget < hearingRange || _chaseUntilKill)
+                if (IsPlayerVisible() || (_distanceToTarget < hearingRange && !_target.IsHiding) || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -155,7 +163,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Suspicious:
-                if (IsPlayerVisible() || _chaseUntilKill)
+                if (IsPlayerVisible() || (_distanceToTarget < hearingRange && !_target.IsHiding) || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -212,6 +220,7 @@ public class BasicEnemyBehavior : MonoBehaviour
             case EnemyState.Idle:
                 Debug.Log("State: Idle");
 
+                _idleTimer = 0f;
                 _idleDirectionTimer = idleDirectionChangeTime;
                 break;
 
@@ -306,6 +315,8 @@ public class BasicEnemyBehavior : MonoBehaviour
 
             _idleDirectionTimer = idleDirectionChangeTime;
         }
+        
+        _idleTimer += Time.deltaTime;
     }
 
     private void PatrolBehavior()

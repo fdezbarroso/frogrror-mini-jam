@@ -2625,7 +2625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973520391116881109, guid: ca0d7d4500da2e747bf0fcd79ceffc50, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Enemy_Tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
