@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public interface IInteractable
@@ -31,5 +32,10 @@ public class InteractableHandler : MonoBehaviour
     {
         HideInstructions();
         _interactable.Interact();
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(_instructions);
     }
 }

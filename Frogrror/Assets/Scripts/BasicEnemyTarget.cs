@@ -3,6 +3,7 @@ using UnityEngine;
 public class BasicEnemyTarget : MonoBehaviour, IEnemyTarget
 {
     [SerializeField] private AudioClip _deathSound;
+    [SerializeField] private string _killedMessage;
 
     private Animator _animator;
     
@@ -26,6 +27,8 @@ public class BasicEnemyTarget : MonoBehaviour, IEnemyTarget
         {
             AudioManager.Instance.PlaySoundEffect(_deathSound);
         }
+        
+        GameplayManager.Instance.DialogueUI.ShowMessage(_killedMessage);
         
         enemy.SetTarget(GameplayManager.Instance.Player, false);
     }
