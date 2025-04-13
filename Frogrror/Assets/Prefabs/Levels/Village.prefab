@@ -4586,6 +4586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathSound: {fileID: 0}
+  _killedMessage: 
 --- !u!61 &7170031683077756250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5785,7 +5786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_Size.y
-      value: 1.7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6236,7 +6237,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_Size.y
-      value: 2.15
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6306,7 +6311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_Size.y
-      value: 1.7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6376,7 +6381,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_Size.y
-      value: 2.15
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.x
