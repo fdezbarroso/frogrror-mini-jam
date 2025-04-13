@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0.95406675, b: 0.75786155, a: 1}
-  m_Intensity: 6
+  m_Intensity: 3
   m_LightVolumeIntensity: 0.002
   m_LightVolumeEnabled: 1
   m_ApplyToSortingLayers: 00000000
@@ -6237,7 +6237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_Size.y
-      value: 2.37
+      value: 2.55
       objectReference: {fileID: 0}
     - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_Offset.y
@@ -6249,7 +6249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.18
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6381,7 +6381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_Size.y
-      value: 2.37
+      value: 2.55
       objectReference: {fileID: 0}
     - target: {fileID: 4303273964202154031, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_Offset.y
@@ -6393,7 +6393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.18
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.z

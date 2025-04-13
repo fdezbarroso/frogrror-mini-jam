@@ -2690,7 +2690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 7216146866686588380, guid: e7c2c0617163ebd439793085a617aae7, type: 3}
   pickUpSound: {fileID: 8300000, guid: 64c9055ea1d9ab84091b411d1d73c2ee, type: 3}
-  pickUpMessage: This will help light the way.\n<E to use>
+  pickUpMessage: This will help light the way.
   id: Lamp
 --- !u!61 &2225298412158822828
 BoxCollider2D:
