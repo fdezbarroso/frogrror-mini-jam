@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: -9152689546471649384, guid: 496b2f4d1164bea4f88223dedca8ee93, type: 3}
   pickUpSound: {fileID: 8300000, guid: 9f72ee6b9392e3842aa3254da58a6483, type: 3}
-  pickUpMessage: You picked up a rock!
+  pickUpMessage: This could serve as a distraction.
   id: Rock
 --- !u!114 &8644490670554422155
 MonoBehaviour:
