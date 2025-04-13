@@ -21,6 +21,8 @@ public class Player : MonoBehaviour, IEnemyTarget
     [SerializeField] private Transform _normalLightContainer;
     [SerializeField] private Transform _flippedLightContainer;
 
+    [SerializeField] private Animator _secretAnimator;
+
     private InputAction _moveAction;
     private InputAction _interactAction;
     private InputAction _activateLampAction;
@@ -155,6 +157,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         if (movement.magnitude > 0f)
         {
             _animator.SetBool("Move", true);
+            _secretAnimator.SetBool("Move", true);
 
             if (_footStepTimer > 0f)
             {
@@ -171,6 +174,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         else
         {
             _animator.SetBool("Move", false);
+            _secretAnimator.SetBool("Move", false);
 
             _footStepTimer = 0f;
         }
@@ -275,6 +279,7 @@ public class Player : MonoBehaviour, IEnemyTarget
     private void StopMovementAnimation()
     {
         _animator.SetBool("Move", false);
+        _secretAnimator.SetBool("Move", false);
     }
 
     private void OnDisable()
