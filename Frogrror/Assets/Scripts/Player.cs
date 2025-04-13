@@ -51,6 +51,8 @@ public class Player : MonoBehaviour, IEnemyTarget
 
     private Transform _lanternContainer;
 
+    private bool _canMoveVertically;
+
     private void Awake()
     {
         _moveAction = InputSystem.actions.FindAction("Move");
@@ -176,7 +178,7 @@ public class Player : MonoBehaviour, IEnemyTarget
 
     private bool CanMoveVertically()
     {
-        return false;
+        return _canMoveVertically;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -244,5 +246,10 @@ public class Player : MonoBehaviour, IEnemyTarget
     public bool HasScissors()
     {
         return _items.Any(i => i.ID == "Scissors");
+    }
+
+    public void AllowVerticalMovement(bool allow)
+    {
+        _canMoveVertically = allow;
     }
 }

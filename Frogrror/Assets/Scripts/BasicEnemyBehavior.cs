@@ -436,6 +436,8 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void MoveTo(Vector2 target, float speed, string animationParam)
     {
+        target.y = transform.position.y;
+        
         Vector2 moveVector = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         if ((moveVector.x > transform.position.x && _enemyData.facingDirection == BasicEnemy.FacingDirection.Left) ||
