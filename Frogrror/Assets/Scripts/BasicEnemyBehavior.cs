@@ -395,7 +395,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         {
             if (_distanceToTarget <= attackRange)
             {
-                _target.Kill(this);
+                _target.Kill(this, true);
             }
         }
     }

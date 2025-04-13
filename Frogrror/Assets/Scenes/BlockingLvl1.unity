@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 8428969792990959804, guid: 5c76ba8f672b70d4ea5899b9de84d32d, type: 3}
       propertyPath: _targetPosition
       value: 
-      objectReference: {fileID: 7078948963433055531}
+      objectReference: {fileID: 1685881829}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -829,6 +829,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1440249952}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1685881829 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4964178711479757457, guid: dbf7c0b9cd0f2f1478b3efc21ab59c58, type: 3}
+  m_PrefabInstance: {fileID: 5535425751889797670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1726744036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8673386280124510644, guid: ae10f722548f18e43a1dd0a8948beccf, type: 3}
@@ -1167,7 +1172,7 @@ PrefabInstance:
     - target: {fileID: 4199832179759568140, guid: 7b777cf8611ec264f92935de5b29026f, type: 3}
       propertyPath: targetPosition
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7078948963433055531}
     - target: {fileID: 8792911977130787886, guid: 7b777cf8611ec264f92935de5b29026f, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

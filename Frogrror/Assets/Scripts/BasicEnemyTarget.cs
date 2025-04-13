@@ -16,7 +16,7 @@ public class BasicEnemyTarget : MonoBehaviour, IEnemyTarget
         _animator = GetComponentInChildren<Animator>();
     }
     
-    public void Kill(BasicEnemyBehavior enemy)
+    public void Kill(BasicEnemyBehavior enemy, bool killed = true)
     {
         IsDead = true;
         

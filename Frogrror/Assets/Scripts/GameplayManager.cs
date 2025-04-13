@@ -30,13 +30,13 @@ public class GameplayManager : MonoBehaviour
         _sceneChanger = FindAnyObjectByType<SceneChanger>();
     }
 
-    public void GameOver()
+    public void GameOver(bool killed = true)
     {
         if (_gameOverScreen == null)
         {
             return;
         }
         
-        _gameOverScreen.Show();
+        _gameOverScreen.Show(killed);
     }
 }

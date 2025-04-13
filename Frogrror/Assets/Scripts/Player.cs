@@ -244,7 +244,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         return item;
     }
 
-    public void Kill(BasicEnemyBehavior enemy)
+    public void Kill(BasicEnemyBehavior enemy, bool killed = true)
     {
         IsDead = true;
 
@@ -252,7 +252,7 @@ public class Player : MonoBehaviour, IEnemyTarget
 
         AudioManager.Instance.PlaySoundEffect(_deathSound);
 
-        GameplayManager.Instance.GameOver();
+        GameplayManager.Instance.GameOver(killed);
 
         enabled = false;
     }

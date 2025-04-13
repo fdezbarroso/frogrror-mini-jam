@@ -19,7 +19,7 @@ public class Gou : MonoBehaviour
             _animator.SetTrigger("Transform");
             
             AudioManager.Instance.PlaySoundEffect(_soundEffect);
-            player.Kill(null);
+            player.Kill(null, false);
             
             enabled = false;
         }
