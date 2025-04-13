@@ -62,6 +62,8 @@ public class Door : MonoBehaviour, IInteractable
             _spriteRenderer.sprite = doorClearedSprite;
             _interactableHandler.ShowInstructions();
             _isCleared = true;
+            
+            _player.RemoveItemById("Scissors");
         }
         else
         {
