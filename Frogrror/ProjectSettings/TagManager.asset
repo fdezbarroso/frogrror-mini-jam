@@ -44,5 +44,8 @@ TagManager:
   - name: NoVisionCone
     uniqueID: 466735919
     locked: 0
+  - name: Water
+    uniqueID: 3805818651
+    locked: 0
   m_RenderingLayers:
   - Default

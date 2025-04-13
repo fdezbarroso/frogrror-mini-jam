@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.maguinho.2dvfx": {
+      "version": "https://github.com/Magnno/Unity_2D_VFX.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "326ee966c53118411ee11cf3a3d13ba1cbfa3508"
+    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,

@@ -58,7 +58,7 @@ public class Player : MonoBehaviour, IEnemyTarget
     {
         _moveAction = InputSystem.actions.FindAction("Move");
         _interactAction = InputSystem.actions.FindAction("Jump");
-        _activateLampAction = InputSystem.actions.FindAction("Crouch");
+        _activateLampAction = InputSystem.actions.FindAction("Interact");
 
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _originalOrderInLayer = _spriteRenderer.sortingOrder;

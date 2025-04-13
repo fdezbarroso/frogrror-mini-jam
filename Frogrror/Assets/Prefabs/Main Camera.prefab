@@ -69,7 +69,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 27.5
+  field of view: 30
   orthographic: 0
   orthographic size: 2.5
   m_Depth: -1
@@ -197,7 +197,7 @@ Transform:
   m_GameObject: {fileID: 6556540947364906545}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4986489, y: -0.22859073, z: 10.07205}
+  m_LocalPosition: {x: 0, y: 0, z: 11}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -246,7 +246,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10000
+  m_SortingOrder: 170
   m_Sprite: {fileID: -6601691336363857274, guid: 0b76e1d389c20644ca5cb50c652c5d6c, type: 3}
   m_Color: {r: 0.76729554, g: 0.76729554, b: 0.76729554, a: 0.16862746}
   m_FlipX: 0
