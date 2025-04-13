@@ -3,6 +3,7 @@ using UnityEngine;
 public class Gou : MonoBehaviour
 {
     [SerializeField] private AudioClip _soundEffect;
+    [SerializeField] private Animator _secretAnimator;
     
     private Animator _animator;
 
@@ -16,7 +17,8 @@ public class Gou : MonoBehaviour
         var player = GameplayManager.Instance.Player;
         if (other.gameObject == player.gameObject)
         {
-            _animator.SetTrigger("Transform");
+            _animator.SetTrigger("Interact");
+            _secretAnimator.SetTrigger("Interact");
             
             AudioManager.Instance.PlaySoundEffect(_soundEffect);
             player.Kill(null, false);

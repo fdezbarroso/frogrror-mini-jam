@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _petMessage: 
   _interactableHandler: {fileID: 7234829292062305652}
+  _petSound: {fileID: 8300000, guid: bbd43e026a98a8848a8bb40f254a8f4b, type: 3}
 --- !u!61 &3065687405723712497
 BoxCollider2D:
   m_ObjectHideFlags: 0
