@@ -19,11 +19,6 @@ public class GameOverScreen : MonoBehaviour
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        
-        _retryButton.onClick.AddListener(() =>
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        });
     }
 
     public void Show(bool killed = true)
@@ -32,6 +27,12 @@ public class GameOverScreen : MonoBehaviour
         text.SetActive(true);
         
         var button = killed ? _retryButton : _continueButton;
+        
+        button.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
+        
         button.gameObject.SetActive(true);
 
         var delay = killed ? 1.5f : 3f;
