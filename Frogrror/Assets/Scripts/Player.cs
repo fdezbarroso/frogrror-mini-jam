@@ -26,6 +26,7 @@ public class Player : MonoBehaviour, IEnemyTarget
     private InputAction _moveAction;
     private InputAction _interactAction;
     private InputAction _activateLampAction;
+    private InputAction _pauseAction;
 
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         _moveAction = InputSystem.actions.FindAction("Move");
         _interactAction = InputSystem.actions.FindAction("Jump");
         _activateLampAction = InputSystem.actions.FindAction("Interact");
+        _pauseAction = InputSystem.actions.FindAction("Pause");
 
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _originalOrderInLayer = _spriteRenderer.sortingOrder;
@@ -82,6 +84,11 @@ public class Player : MonoBehaviour, IEnemyTarget
         {
             ToggleLamp();
             return;
+        }
+
+        if (_pauseAction.WasPerformedThisFrame())
+        {
+            GameplayManager.Instance.TogglePause();
         }
 
         if (CanMove())
