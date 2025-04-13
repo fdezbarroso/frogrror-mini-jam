@@ -30,6 +30,9 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     public int suspiciousLookAroundCount = 3;
 
+    public Color chillColor = new Color(0x48 / 255.0f, 0x68 / 255.0f, 0x45 / 255.0f);
+    public Color alertColor = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
+
     public List<PatrolPoint> patrolPoints;
 
     [SerializeField] private EnemyState state = EnemyState.Idle;
@@ -275,31 +278,31 @@ public class BasicEnemyBehavior : MonoBehaviour
         switch (state)
         {
             case EnemyState.Idle:
-                _visionCone.color = new Color(0x48 / 255.0f, 0x68 / 255.0f, 0x45 / 255.0f);
+                _visionCone.color = chillColor;
                 _visionCone.intensity = _baseIntensity;
                 IdleBehavior();
                 break;
 
             case EnemyState.Patrol:
-                _visionCone.color = new Color(0x48 / 255.0f, 0x68 / 255.0f, 0x45 / 255.0f);
+                _visionCone.color = chillColor;
                 _visionCone.intensity = _baseIntensity;
                 PatrolBehavior();
                 break;
 
             case EnemyState.Suspicious:
-                _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
+                _visionCone.color = alertColor;
                 _visionCone.intensity = _baseIntensity;
                 SuspiciousBehavior();
                 break;
 
             case EnemyState.Chase:
-                _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
+                _visionCone.color = alertColor;
                 _visionCone.intensity = _baseIntensity * 2.0f;
                 ChaseBehavior();
                 break;
 
             case EnemyState.Attack:
-                _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
+                _visionCone.color = alertColor;
                 _visionCone.intensity = _baseIntensity * 2.0f;
                 AttackBehavior();
                 break;
