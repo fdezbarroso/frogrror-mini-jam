@@ -25,6 +25,9 @@ public class ThrowRockPoint : MonoBehaviour, IInteractable
         player.RemoveItemById("Rock");
         
         item.transform.position = _startingPosition.position;
+
+        item.GetComponent<FloatingMovement>().enabled = false;
+        
         item.gameObject.SetActive(true);
         
         var itemRigidbody = item.GetComponent<Rigidbody2D>();

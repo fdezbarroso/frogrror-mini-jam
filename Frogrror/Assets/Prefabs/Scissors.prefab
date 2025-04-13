@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: m_ReferencePixelsPerUnit
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 415577745501348354, guid: 10e27351c5b326c43a0de71aec8f2b5b, type: 3}
+      propertyPath: m_text
+      value: PICK UP
+      objectReference: {fileID: 0}
     - target: {fileID: 3106388774320038359, guid: 10e27351c5b326c43a0de71aec8f2b5b, type: 3}
       propertyPath: m_Name
       value: ScissorInstructions

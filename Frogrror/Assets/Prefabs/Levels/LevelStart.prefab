@@ -2973,6 +2973,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2832722163828398636}
     m_Modifications:
     - target: {fileID: 415577745501348354, guid: 10e27351c5b326c43a0de71aec8f2b5b, type: 3}
+      propertyPath: m_text
+      value: PICK UP
+      objectReference: {fileID: 0}
+    - target: {fileID: 415577745501348354, guid: 10e27351c5b326c43a0de71aec8f2b5b, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -1711011226041097929, guid: 07e8c0f46706a684d8ec80468ac647c7, type: 2}
