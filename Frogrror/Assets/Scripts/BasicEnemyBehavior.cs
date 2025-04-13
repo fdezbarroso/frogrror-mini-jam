@@ -43,7 +43,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private BasicEnemy _enemyData;
     private IEnemyTarget _target;
-    
+
     private Light2D _visionCone;
 
     private float _distanceToTarget = 0.0f;
@@ -65,8 +65,10 @@ public class BasicEnemyBehavior : MonoBehaviour
     private Vector3 _originalSpritePosition;
 
     private bool _chaseUntilKill;
-    
+
     private float _idleTimer = 0.0f;
+
+    private float _baseIntensity = 0.0f;
 
     private void Awake()
     {
@@ -82,11 +84,11 @@ public class BasicEnemyBehavior : MonoBehaviour
     private void Start()
     {
         _target = GameplayManager.Instance.Player;
-        
+
         _enemyData = GetComponent<BasicEnemy>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _visionCone = GetComponentInChildren<Light2D>();
-        
+
         _originalSpritePosition = _spriteRenderer.transform.localPosition;
 
         _animator = GetComponentInChildren<Animator>();
@@ -94,7 +96,9 @@ public class BasicEnemyBehavior : MonoBehaviour
         _startingPosition = transform.position;
 
         _visionCone.pointLightInnerRadius = detectionRange;
-        _visionCone.pointLightOuterRadius = suspiciousRange * 1.2f;
+        _visionCone.pointLightOuterRadius = suspiciousRange * 1.05f;
+
+        _baseIntensity = _visionCone.intensity;
 
         ChangeState(state);
     }
@@ -107,9 +111,9 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
 
         _distanceToTarget = Vector2.Distance(transform.position, _target.Transform.position);
-        
+
         var verticalDistance = Mathf.Abs(transform.position.y - _target.Transform.position.y);
-        
+
         _distanceToTarget += verticalDistance * 1.5f;
 
         switch (state)
@@ -207,7 +211,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         {
             return;
         }
-        
+
         if (state == EnemyState.Chase && newState == EnemyState.Suspicious)
         {
             _lastKnownTargetPosition = _target.Transform.position;
@@ -240,17 +244,17 @@ public class BasicEnemyBehavior : MonoBehaviour
 
             case EnemyState.Chase:
                 Debug.Log("State: Chase");
-                
+
                 AudioManager.Instance.PlaySoundEffect(_chaseSound);
                 break;
 
             case EnemyState.Attack:
                 Debug.Log("State: Attack");
-                
+
                 _animator.SetTrigger("Attack");
-                
+
                 _attackDelayTimer = attackDelay;
-                
+
                 AudioManager.Instance.PlaySoundEffect(_attackSound);
                 break;
 
@@ -272,31 +276,31 @@ public class BasicEnemyBehavior : MonoBehaviour
         {
             case EnemyState.Idle:
                 _visionCone.color = new Color(0x48 / 255.0f, 0x68 / 255.0f, 0x45 / 255.0f);
-                _visionCone.intensity = 30.0f;
+                _visionCone.intensity = _baseIntensity;
                 IdleBehavior();
                 break;
 
             case EnemyState.Patrol:
                 _visionCone.color = new Color(0x48 / 255.0f, 0x68 / 255.0f, 0x45 / 255.0f);
-                _visionCone.intensity = 30.0f;
+                _visionCone.intensity = _baseIntensity;
                 PatrolBehavior();
                 break;
 
             case EnemyState.Suspicious:
                 _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
-                _visionCone.intensity = 30.0f;
+                _visionCone.intensity = _baseIntensity;
                 SuspiciousBehavior();
                 break;
 
             case EnemyState.Chase:
                 _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
-                _visionCone.intensity = 60.0f;
+                _visionCone.intensity = _baseIntensity * 2.0f;
                 ChaseBehavior();
                 break;
 
             case EnemyState.Attack:
                 _visionCone.color = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
-                _visionCone.intensity = 60.0f;
+                _visionCone.intensity = _baseIntensity * 2.0f;
                 AttackBehavior();
                 break;
 
@@ -315,7 +319,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
             _idleDirectionTimer = idleDirectionChangeTime;
         }
-        
+
         _idleTimer += Time.deltaTime;
     }
 
@@ -452,7 +456,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     private void MoveTo(Vector2 target, float speed, string animationParam)
     {
         target.y = transform.position.y;
-        
+
         Vector2 moveVector = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         if ((moveVector.x > transform.position.x && _enemyData.facingDirection == BasicEnemy.FacingDirection.Left) ||
