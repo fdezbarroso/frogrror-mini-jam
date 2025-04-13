@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ItemLock : MonoBehaviour
@@ -5,8 +6,9 @@ public class ItemLock : MonoBehaviour
     [SerializeField] private string _requiredItemId;
     [SerializeField] private GameObject _lock;
     [SerializeField] private string _noItemMessage;
-    
-    private void OnTriggerEnter(Collider other)
+
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         var player = GameplayManager.Instance.Player;
         if (other.gameObject == player.gameObject)
