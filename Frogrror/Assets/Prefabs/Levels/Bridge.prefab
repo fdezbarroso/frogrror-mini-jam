@@ -2829,6 +2829,8 @@ MonoBehaviour:
   patrolPointWaitTime: 2
   suspiciousLookAroundTime: 1
   suspiciousLookAroundCount: 3
+  chillColor: {r: 0.28235295, g: 0.40784314, b: 0.27058825, a: 1}
+  alertColor: {r: 0.29803923, g: 0.11764706, b: 0.38431373, a: 1}
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -2950,7 +2952,7 @@ MonoBehaviour:
   m_Intensity: 6
   m_LightVolumeIntensity: 0.002
   m_LightVolumeEnabled: 1
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000002fd3d11b1b2fd8e2
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -9496,7 +9498,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 4955846920434659080}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e62e03cc8b65ac43810ae51f6320ce6, type: 3}
   m_Name: 
@@ -9847,7 +9849,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 7575017241735847284}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e62e03cc8b65ac43810ae51f6320ce6, type: 3}
   m_Name: 
