@@ -36,6 +36,7 @@ public class Player : MonoBehaviour, IEnemyTarget
     private readonly List<Item> _items = new List<Item>();
 
     public event Action<Item> OnItemAdded;
+    public event Action<Item> OnItemRemoved;
 
     public bool IsHiding { get; private set; }
 
@@ -221,6 +222,14 @@ public class Player : MonoBehaviour, IEnemyTarget
 
         _items.Add(item);
         OnItemAdded?.Invoke(item);
+    }
+
+    public void RemoveItemById(string itemId)
+    {
+        Item item = _items.Find(x => x.ID == itemId);
+
+        _items.Remove(item);
+        OnItemRemoved?.Invoke(item);
     }
 
     public void Kill()

@@ -454,7 +454,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7054520102540161486, guid: 52718ac75cd2a37419a53dee3cfbd9e1, type: 3}
       propertyPath: m_Name
-      value: Scissor
+      value: Scissors
       objectReference: {fileID: 0}
     - target: {fileID: 7835011505854213059, guid: 52718ac75cd2a37419a53dee3cfbd9e1, type: 3}
       propertyPath: m_LocalPosition.x

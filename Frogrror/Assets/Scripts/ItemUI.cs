@@ -5,11 +5,11 @@ public class ItemUI : MonoBehaviour
 {
     [SerializeField] private Image _itemIcon;
 
-    private Item _item;
-    
-    public void SetupItem(Item item)
+    public Item item;
+
+    public void SetupItem(Item inItem)
     {
-        _item = item;
+        item = inItem;
         _itemIcon.sprite = item.Icon;
     }
 }
