@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour, IEnemyTarget
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour, IEnemyTarget
     [SerializeField] private Transform _flippedLightContainer;
 
     [SerializeField] private Animator _secretAnimator;
+
+    [SerializeField] private Light2D _lanternSpotlight;
 
     private InputAction _moveAction;
     private InputAction _interactAction;
@@ -139,6 +142,8 @@ public class Player : MonoBehaviour, IEnemyTarget
             _spriteRenderer.flipX = false;
             _spriteRenderer.transform.localPosition = _originalSpritePosition;
             _lanternContainer = _normalLightContainer;
+
+            _lanternSpotlight.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -90.0f);
         }
         else if (moveValue.x < 0f && !_spriteRenderer.flipX)
         {
@@ -146,6 +151,8 @@ public class Player : MonoBehaviour, IEnemyTarget
             _spriteRenderer.transform.localPosition =
                 _originalSpritePosition + Vector3.right * -SpriteAlignmentCompensation;
             _lanternContainer = _flippedLightContainer;
+
+            _lanternSpotlight.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
         }
 
         _lanternLight.transform.SetParent(_lanternContainer);

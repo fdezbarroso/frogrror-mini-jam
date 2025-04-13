@@ -61,6 +61,7 @@ MonoBehaviour:
   _normalLightContainer: {fileID: 6036017759199461645}
   _flippedLightContainer: {fileID: 4626765982423362058}
   _secretAnimator: {fileID: 7062575577730932916}
+  _lanternSpotlight: {fileID: 5953202231858122283}
 --- !u!61 &5811288619699376539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -457,7 +458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3287213947018086481
 Transform:
   m_ObjectHideFlags: 0
@@ -488,9 +489,9 @@ MonoBehaviour:
   m_ComponentVersion: 2
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.8
   m_Color: {r: 0.92941177, g: 0.94509804, b: 0.8666667, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 000000002fd3d11b1b2fd8e2
@@ -514,7 +515,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 3
+  m_PointLightOuterRadius: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -588,6 +589,123 @@ Transform:
   - {fileID: 478347702970630392}
   m_Father: {fileID: 7918478615308248144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4833665395628971662
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 478347702970630392}
+    m_Modifications:
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.94509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Intensity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774370013636397512, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Name
+      value: LanternLightFront
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774370013636397512, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774370013636397512, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+--- !u!4 &858372850093360313 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+  m_PrefabInstance: {fileID: 4833665395628971662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5953202231858122283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+  m_PrefabInstance: {fileID: 4833665395628971662}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5647023747996570319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -608,6 +726,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.92941177
       objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264004005599074469, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -626,15 +752,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -662,7 +788,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5259408998753866295, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 858372850093360313}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3256b9eb07b16d43a250889388e4ae3, type: 3}
 --- !u!4 &478347702970630392 stripped
