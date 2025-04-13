@@ -400,10 +400,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
         if (_attackDelayTimer <= 0.0f)
         {
-            if (_distanceToTarget <= attackRange)
-            {
-                _target.Kill(this, true);
-            }
+            _target.Kill(this, true);
         }
     }
 

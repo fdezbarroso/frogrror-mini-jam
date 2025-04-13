@@ -25,6 +25,8 @@ public class Player : MonoBehaviour, IEnemyTarget
     [SerializeField] private Animator _secretAnimator;
 
     [SerializeField] private Light2D _lanternSpotlight;
+    
+    [SerializeField] private AudioClip _toggleLampSound;
 
     private InputAction _moveAction;
     private InputAction _interactAction;
@@ -83,7 +85,7 @@ public class Player : MonoBehaviour, IEnemyTarget
             return;
         }
 
-        if (_activateLampAction.WasPerformedThisFrame())
+        if (_activateLampAction.WasPerformedThisFrame() && !IsHiding)
         {
             ToggleLamp();
             return;
@@ -110,11 +112,23 @@ public class Player : MonoBehaviour, IEnemyTarget
         {
             return;
         }
+        
+        SetLampActive(!_lampActive);
+    }
 
-        _lampActive = !_lampActive;
-
+    private void SetLampActive(bool active)
+    {
+        if (_lampActive == active)
+        {
+            return;
+        }
+        
+        _lampActive = active;
+        
         _animator.SetBool("LampActive", _lampActive);
         _lanternLight.SetActive(_lampActive);
+        
+        AudioManager.Instance.PlaySoundEffect(_toggleLampSound);
     }
 
     private void Move()
@@ -227,6 +241,8 @@ public class Player : MonoBehaviour, IEnemyTarget
     {
         IsHiding = true;
         _spriteRenderer.sortingOrder = _hiddenOrderInLayer;
+        
+        SetLampActive(false);
     }
 
     public void Show()
