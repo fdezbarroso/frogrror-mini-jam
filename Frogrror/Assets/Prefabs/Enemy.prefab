@@ -148,6 +148,7 @@ MonoBehaviour:
   pointArrivalThreshold: 0.1
   _chaseSound: {fileID: 8300000, guid: 6ed9ccf9a88af684aa9b91fa8c18ff9f, type: 3}
   _attackSound: {fileID: 8300000, guid: 2cd15c4768917224f87b018ba3679806, type: 3}
+  _maxIdleTime: 5
 --- !u!114 &1311592070614952007
 MonoBehaviour:
   m_ObjectHideFlags: 0
