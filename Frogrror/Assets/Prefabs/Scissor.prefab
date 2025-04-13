@@ -189,9 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842ff3fa0cb1af549a77bf23639c047b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 350645291330212117, guid: e5b334869a9f84543bd620685a8878a8, type: 3}
-  _pickUpMessage: These scissors may help me open that door...
-  _id: Scizors
+  icon: {fileID: 350645291330212117, guid: e5b334869a9f84543bd620685a8878a8, type: 3}
+  pickUpSound: {fileID: 8300000, guid: 8a4953a6e2344ba47abd3b27355f7b27, type: 3}
+  pickUpMessage: These could help me open that door...
+  id: Scissors
 --- !u!114 &5229706720644954978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,8 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50babbd6d254eba4eb39ddae978f43b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  amplitude: 0.1
+  speed: 3
+  amplitude: 0.05
 --- !u!61 &4714982566355681293
 BoxCollider2D:
   m_ObjectHideFlags: 0

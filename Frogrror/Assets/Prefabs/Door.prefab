@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 728269472603897282}
   - component: {fileID: 5531252422317937063}
   m_Layer: 0
-  m_Name: DoorCorrupt
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,6 +120,8 @@ MonoBehaviour:
   interactMessageNoScissors: I need something to clear those vines.
   targetPosition: {fileID: 0}
   doorClearedSprite: {fileID: 5213229242370633579, guid: 2cfb88b5e41536640aae33d4634be616, type: 3}
+  clearDoorSound: {fileID: 8300000, guid: f174b9ddc3654b54bab66d441a895375, type: 3}
+  openDoorSound: {fileID: 8300000, guid: 508304e7021f2704d9dc5be9d49a170d, type: 3}
 --- !u!61 &5531252422317937063
 BoxCollider2D:
   m_ObjectHideFlags: 0
