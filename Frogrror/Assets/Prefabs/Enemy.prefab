@@ -136,7 +136,7 @@ MonoBehaviour:
   attackDelay: 0.5
   detectionRange: 2
   suspiciousRange: 4
-  hearingRange: 3
+  hearingRange: 1.5
   idleDirectionChangeTime: 3
   patrolPointWaitTime: 2
   suspiciousLookAroundTime: 1
