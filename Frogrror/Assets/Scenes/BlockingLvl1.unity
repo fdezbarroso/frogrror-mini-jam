@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3011cf9617542d7469ce540c4f9794a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!43 &1028946624
+--- !u!43 &825325406
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -917,13 +917,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d37c73604e96a84b9e49c49d47de595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectSequence:
+  playerWakeUpDialogue: Where am I?
+  objectSequence:
   - {fileID: 1629555908}
   - {fileID: 1982172633}
   - {fileID: 1380521987}
   - {fileID: 742216133}
   - {fileID: 1295212064}
-  _delay: 0.5
+  delay: 0.5
 --- !u!1 &1530853913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,7 +1571,7 @@ PrefabInstance:
     - target: {fileID: 4804757048543255184, guid: 63e0eaef89e680f42898608261bf37e6, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1028946624}
+      objectReference: {fileID: 825325406}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

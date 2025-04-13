@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class ObjectSequenceActivator : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _objectSequence;
-    [SerializeField] private float _delay = 0.5f;
+    [SerializeField] private string playerWakeUpDialogue;
+    [SerializeField] private List<GameObject> objectSequence;
+    [SerializeField] private float delay = 0.5f;
 
     private IEnumerator Start()
     {
-        for (var i = 1; i < _objectSequence.Count; i++)
+        for (var i = 1; i < objectSequence.Count; i++)
         {
-            yield return new WaitForSeconds(_delay);
-            _objectSequence[i - 1].SetActive(false);
-            _objectSequence[i].SetActive(true);
+            yield return new WaitForSeconds(delay);
+            objectSequence[i - 1].SetActive(false);
+            objectSequence[i].SetActive(true);
         }
+
+        GameplayManager.Instance.DialogueUI.ShowMessage(playerWakeUpDialogue);
     }
 }

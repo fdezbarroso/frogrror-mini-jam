@@ -3,9 +3,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
-    
-    [SerializeField] private AudioSource _ambienceAudioSource;
-    [SerializeField] private AudioSource _soundEffectAudioSource;
+
+    [SerializeField] private AudioSource ambienceAudioSource;
+    [SerializeField] private AudioSource soundEffectAudioSource;
+    [SerializeField] private AudioSource soundtrackAudioSource;
 
     private void Awake()
     {
@@ -22,17 +23,27 @@ public class AudioManager : MonoBehaviour
 
     public void StopAmbience()
     {
-        _ambienceAudioSource.Stop();
+        ambienceAudioSource.Stop();
     }
 
     public void PlayAmbience()
     {
-        _ambienceAudioSource.Play();
+        ambienceAudioSource.Play();
+    }
+
+    public void StopSoundtrack()
+    {
+        soundtrackAudioSource.Stop();
+    }
+
+    public void PlaySoundtrack()
+    {
+        soundtrackAudioSource.Play();
     }
 
     public void PlaySoundEffect(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
     {
-        _soundEffectAudioSource.pitch = pitch;
-        _soundEffectAudioSource.PlayOneShot(clip, volume);
+        soundEffectAudioSource.pitch = pitch;
+        soundEffectAudioSource.PlayOneShot(clip, volume);
     }
 }
