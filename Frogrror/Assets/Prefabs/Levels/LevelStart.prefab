@@ -2591,9 +2591,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842ff3fa0cb1af549a77bf23639c047b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 7216146866686588380, guid: e7c2c0617163ebd439793085a617aae7, type: 3}
-  _pickUpMessage: You picked up a lantern!
-  _id: Lamp
+  icon: {fileID: 7216146866686588380, guid: e7c2c0617163ebd439793085a617aae7, type: 3}
+  pickUpSound: {fileID: 0}
+  pickUpMessage: You picked up a lantern!
+  id: Lamp
 --- !u!61 &2225298412158822828
 BoxCollider2D:
   m_ObjectHideFlags: 0
