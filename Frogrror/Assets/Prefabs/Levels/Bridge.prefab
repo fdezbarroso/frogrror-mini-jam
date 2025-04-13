@@ -4506,6 +4506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathSound: {fileID: 0}
+  _killedMessage: 
 --- !u!61 &8187607684022418485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9228,7 +9229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.7
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 8620568936000920598, guid: 78dfe98f42a8e3b4ebeff886dc62be47, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9641,7 +9642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8426360603774894697, guid: f385bb8d30433c342bdaf8dbf64c035d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.84
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 8426360603774894697, guid: f385bb8d30433c342bdaf8dbf64c035d, type: 3}
       propertyPath: m_LocalPosition.y
