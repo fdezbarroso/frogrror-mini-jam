@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: -9152689546471649384, guid: 496b2f4d1164bea4f88223dedca8ee93, type: 3}
   pickUpSound: {fileID: 8300000, guid: 9f72ee6b9392e3842aa3254da58a6483, type: 3}
-  pickUpMessage: You picked up a rock!
+  pickUpMessage: This could serve as a distraction.
   id: Rock
 --- !u!114 &8644490670554422155
 MonoBehaviour:
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_ComponentVersion: 2
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.1
+  m_FalloffIntensity: 0.3
   m_Color: {r: 0.92941177, g: 0.94509804, b: 0.8666667, a: 1}
   m_Intensity: 6
   m_LightVolumeIntensity: 1

@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Intensity: 10
   m_LightVolumeIntensity: 0.002
   m_LightVolumeEnabled: 1
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000002fd3d11b1b2fd8e2
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2594,7 +2594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 7216146866686588380, guid: e7c2c0617163ebd439793085a617aae7, type: 3}
   pickUpSound: {fileID: 8300000, guid: 64c9055ea1d9ab84091b411d1d73c2ee, type: 3}
-  pickUpMessage: You picked up a lantern!
+  pickUpMessage: This will help light the way.\n<E to use>
   id: Lamp
 --- !u!61 &2225298412158822828
 BoxCollider2D:
