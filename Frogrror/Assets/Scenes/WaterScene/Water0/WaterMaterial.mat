@@ -90,8 +90,8 @@ Material:
     - _Frequency6: 1
     - _Global_Amplitude: 0.2
     - _Global_Speed: 0.5
-    - _Mesh_Height: 2
-    - _Mesh_Width: 40
+    - _Mesh_Height: 5
+    - _Mesh_Width: 20
     - _Reflection_Mask_Fading: 4
     - _Reflection_Mask_Height: 4
     - _Reflection_Opacity: 1
@@ -120,7 +120,7 @@ Material:
     - _Reflection_Warp_Scale: {r: 0.01, g: 0.5, b: 0, a: 0}
     - _Reflection_Warp_Speed: {r: 0.1, g: 1, b: 0, a: 0}
     - _Render_Camera_Position: {r: 300.78, g: -1.6099999, b: 0, a: 0}
-    - _Render_Camera_Size: {r: 28.444445, g: 16, b: 0, a: 0}
+    - _Render_Camera_Size: {r: 29.17379, g: 16, b: 0, a: 0}
     - _Surface_Line_Color: {r: 0.16678026, g: 0.3584906, b: 0.1488074, a: 0}
     - _Top_Color: {r: 0.082353115, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
