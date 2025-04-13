@@ -248,7 +248,7 @@ public class BasicEnemyBehavior : MonoBehaviour
             case EnemyState.Chase:
                 Debug.Log("State: Chase");
 
-                AudioManager.Instance.PlaySoundEffect(_chaseSound);
+                AudioManager.Instance.PlaySoundEffect(_chaseSound, 0.5f);
                 break;
 
             case EnemyState.Attack:
@@ -258,7 +258,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
                 _attackDelayTimer = attackDelay;
 
-                AudioManager.Instance.PlaySoundEffect(_attackSound);
+                AudioManager.Instance.PlaySoundEffect(_attackSound, 0.6f);
                 break;
 
             default:

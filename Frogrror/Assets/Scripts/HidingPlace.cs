@@ -39,6 +39,6 @@ public class HidingPlace : MonoBehaviour, IInteractable
             _spriteRenderer.sprite = _playerHiddenSprite;
         }
         
-        AudioManager.Instance.PlaySoundEffect(_playerHidingSound);
+        AudioManager.Instance.PlaySoundEffect(_playerHidingSound, 1.3f);
     }
 }

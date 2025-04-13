@@ -136,11 +136,13 @@ MonoBehaviour:
   attackDelay: 0.5
   detectionRange: 2
   suspiciousRange: 4
-  hearingRange: 1.5
+  hearingRange: 0.75
   idleDirectionChangeTime: 3
   patrolPointWaitTime: 2
   suspiciousLookAroundTime: 1
   suspiciousLookAroundCount: 3
+  chillColor: {r: 0.28235295, g: 0.40784314, b: 0.27058825, a: 1}
+  alertColor: {r: 0.29803923, g: 0.11764706, b: 0.38431373, a: 1}
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
