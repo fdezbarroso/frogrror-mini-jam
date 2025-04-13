@@ -86,6 +86,10 @@ public class Player : MonoBehaviour, IEnemyTarget
         {
             Move();
         }
+        else
+        {
+            StopMovementAnimation();
+        }
     }
 
     private void ToggleLamp()
@@ -266,5 +270,15 @@ public class Player : MonoBehaviour, IEnemyTarget
     public void AllowVerticalMovement(bool allow)
     {
         _canMoveVertically = allow;
+    }
+
+    private void StopMovementAnimation()
+    {
+        _animator.SetBool("Move", false);
+    }
+
+    private void OnDisable()
+    {
+        StopMovementAnimation();
     }
 }
