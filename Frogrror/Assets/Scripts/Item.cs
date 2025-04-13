@@ -31,7 +31,7 @@ public class Item : MonoBehaviour, IInteractable
 
         if (_audioManager && pickUpSound)
         {
-            _audioManager.PlaySoundEffect(pickUpSound);
+            _audioManager.PlaySoundEffect(pickUpSound, 1.2f);
         }
     }
 }
