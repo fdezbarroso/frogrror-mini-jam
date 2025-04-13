@@ -1409,9 +1409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9381766343747b3478a6035fb41f1a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactMessageNoRock: This is a nice spot to throw something.
   _startingPosition: {fileID: 2586501192751672843}
   _throwForce: 160
   _throwDirection: {x: -1, y: 1}
+  _throwSound: {fileID: 8300000, guid: 46faf4edce7423d41bea937bb560f1ba, type: 3}
 --- !u!61 &6524850436443397276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4576,7 +4578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b72638a4085aa4419bd73e666dcac5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bellSound: {fileID: 0}
+  _bellSound: {fileID: 8300000, guid: 5ebf27454fb65fd46b2d14ca8c1929c1, type: 3}
   _enemy: {fileID: 469364742613817838}
 --- !u!1 &7988326489786874491
 GameObject:
@@ -5586,6 +5588,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8130162961792963757}
     m_Modifications:
+    - target: {fileID: 415577745501348354, guid: 10e27351c5b326c43a0de71aec8f2b5b, type: 3}
+      propertyPath: m_text
+      value: INTERACT
+      objectReference: {fileID: 0}
     - target: {fileID: 415577745501348354, guid: 10e27351c5b326c43a0de71aec8f2b5b, type: 3}
       propertyPath: m_sharedMaterial
       value: 

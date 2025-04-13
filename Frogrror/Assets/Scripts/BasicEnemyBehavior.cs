@@ -110,7 +110,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         
         var verticalDistance = Mathf.Abs(transform.position.y - _target.Transform.position.y);
         
-        _distanceToTarget += verticalDistance;
+        _distanceToTarget += verticalDistance * 1.5f;
 
         switch (state)
         {
