@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public AudioManager AudioManager => _audioManager;
     public SceneChanger SceneChanger => _sceneChanger;
+    
+    public bool HasLampActive { get; set; }
 
     private void Awake()
     {
@@ -21,5 +23,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ResetGame()
+    {
+        HasLampActive = false;
     }
 }

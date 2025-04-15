@@ -27,6 +27,7 @@ public class GameOverScreen : MonoBehaviour
         
         _continueButton.onClick.AddListener(() =>
         {
+            GameManager.Instance.ResetGame();
             GameManager.Instance.SceneChanger.ChangeScene("Start");
         });
     }

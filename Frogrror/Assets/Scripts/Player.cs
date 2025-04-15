@@ -28,6 +28,8 @@ public class Player : MonoBehaviour, IEnemyTarget
     
     [SerializeField] private AudioClip _toggleLampSound;
 
+    [SerializeField] private List<Item> _startItems = new List<Item>();
+
     private InputAction _moveAction;
     private InputAction _interactAction;
     private InputAction _activateLampAction;
@@ -42,9 +44,6 @@ public class Player : MonoBehaviour, IEnemyTarget
     private InteractableHandler _interactableHandler;
 
     private readonly List<Item> _items = new List<Item>();
-
-    public event Action<Item> OnItemAdded;
-    public event Action<Item> OnItemRemoved;
 
     public bool IsHiding { get; private set; }
 
@@ -75,6 +74,14 @@ public class Player : MonoBehaviour, IEnemyTarget
         _animator = GetComponentInChildren<Animator>();
 
         _lanternContainer = _lanternLight.transform.parent;
+        
+        foreach (var itemPrefab in _startItems)
+        {
+            var item = Instantiate(itemPrefab, transform);
+            TakeItem(item);
+        }
+        
+        SetLampActive(GameManager.Instance.HasLampActive, false);
     }
 
     private void Update()
@@ -116,9 +123,9 @@ public class Player : MonoBehaviour, IEnemyTarget
         SetLampActive(!_lampActive);
     }
 
-    private void SetLampActive(bool active)
+    private void SetLampActive(bool active, bool playSound = true)
     {
-        if (_lampActive == active)
+        if (_lampActive == active || !_hasLamp)
         {
             return;
         }
@@ -127,8 +134,13 @@ public class Player : MonoBehaviour, IEnemyTarget
         
         _animator.SetBool("LampActive", _lampActive);
         _lanternLight.SetActive(_lampActive);
+
+        if (playSound)
+        {
+            GameManager.Instance.AudioManager.PlaySoundEffect(_toggleLampSound);
+        }
         
-        GameManager.Instance.AudioManager.PlaySoundEffect(_toggleLampSound);
+        GameManager.Instance.HasLampActive = _lampActive;
     }
 
     private void Move()
@@ -261,7 +273,8 @@ public class Player : MonoBehaviour, IEnemyTarget
         }
 
         _items.Add(item);
-        OnItemAdded?.Invoke(item);
+        
+        GameplayManager.Instance.InventoryUI.OnItemAdded(item);
     }
 
     public void RemoveItemById(string itemId)
@@ -269,7 +282,8 @@ public class Player : MonoBehaviour, IEnemyTarget
         Item item = _items.Find(x => x.ID == itemId);
 
         _items.Remove(item);
-        OnItemRemoved?.Invoke(item);
+        
+        GameplayManager.Instance.InventoryUI.OnItemRemoved(item);
     }
 
     public Item GetItemById(string itemId)

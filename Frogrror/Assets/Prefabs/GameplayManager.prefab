@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
   _dialogueUI: {fileID: 8084032777217232135}
+  _inventoryUI: {fileID: 594709306035025559}
   _gameOverScreen: {fileID: 5629190187036011572}
 --- !u!1001 &2752738159254484461
 PrefabInstance:
@@ -321,6 +322,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a2fb0a0e98d91343824da5d6c8f00d3, type: 3}
+--- !u!114 &594709306035025559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4361039384375597905, guid: 3a2fb0a0e98d91343824da5d6c8f00d3, type: 3}
+  m_PrefabInstance: {fileID: 3802536446580239814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca494d177575b545827b8a704eb5a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8084032777217232135 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4968897806493409473, guid: 3a2fb0a0e98d91343824da5d6c8f00d3, type: 3}

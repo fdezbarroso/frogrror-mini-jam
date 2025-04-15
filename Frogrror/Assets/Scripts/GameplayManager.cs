@@ -6,11 +6,14 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField] private Player _player;
 
-    [Header("UI")] [SerializeField] private DialogueUI _dialogueUI;
+    [Header("UI")]
+    [SerializeField] private DialogueUI _dialogueUI;
+    [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private GameOverScreen _gameOverScreen;
 
     public Player Player => _player;
     public DialogueUI DialogueUI => _dialogueUI;
+    public InventoryUI InventoryUI => _inventoryUI;
 
     private bool _isPaused;
 
