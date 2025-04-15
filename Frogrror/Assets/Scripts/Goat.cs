@@ -36,7 +36,7 @@ public class Goat : MonoBehaviour, IInteractable
         
         GameplayManager.Instance.Player.Interact();
         
-        AudioManager.Instance.PlaySoundEffect(_petSound);
+        GameManager.Instance.AudioManager.PlaySoundEffect(_petSound);
         
         GameplayManager.Instance.DialogueUI.ShowMessage(_petMessage);
     }

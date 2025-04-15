@@ -1,6 +1,6 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
@@ -13,23 +13,26 @@ public class SceneChanger : MonoBehaviour
         _canvasGroup =  GetComponent<CanvasGroup>();
     }
 
-    public void Show(Action onShow = null)
+    public void ChangeScene(string sceneName)
     {
         _canvasGroup.blocksRaycasts = true;
         var tween = _canvasGroup.DOFade(1f, _fadeDuration);
         tween.OnComplete(() =>
         {
-            onShow?.Invoke();
+            var loadOperation = SceneManager.LoadSceneAsync(sceneName);
+            if (loadOperation != null)
+            {
+                loadOperation.completed += OnSceneLoaded;
+            }
         });
     }
 
-    public void Hide(Action onHide = null)
+    private void OnSceneLoaded(AsyncOperation loadOperation)
     {
         var tween = _canvasGroup.DOFade(0f, _fadeDuration);
         tween.OnComplete(() =>
         {
             _canvasGroup.blocksRaycasts = false;
-            onHide?.Invoke();
         });
     }
 }

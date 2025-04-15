@@ -23,7 +23,7 @@ public class Bell : MonoBehaviour
             
             _enemy.SetTarget(_enemyTarget, true);
             
-            AudioManager.Instance.PlaySoundEffect(_bellSound, 0.5f);
+            GameManager.Instance.AudioManager.PlaySoundEffect(_bellSound, 0.5f);
         }
 
         if (other.gameObject == GameplayManager.Instance.Player.gameObject)

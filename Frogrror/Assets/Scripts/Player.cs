@@ -128,7 +128,7 @@ public class Player : MonoBehaviour, IEnemyTarget
         _animator.SetBool("LampActive", _lampActive);
         _lanternLight.SetActive(_lampActive);
         
-        AudioManager.Instance.PlaySoundEffect(_toggleLampSound);
+        GameManager.Instance.AudioManager.PlaySoundEffect(_toggleLampSound);
     }
 
     private void Move()
@@ -195,7 +195,7 @@ public class Player : MonoBehaviour, IEnemyTarget
 
             var footStepSound = _footStepSounds[Random.Range(0, _footStepSounds.Count)];
             var pitch = Random.Range(0.8f, 1.2f);
-            AudioManager.Instance.PlaySoundEffect(footStepSound, 0.7f, pitch);
+            GameManager.Instance.AudioManager.PlaySoundEffect(footStepSound, 0.7f, pitch);
 
             _footStepTimer = _footStepDelay;
         }
@@ -284,7 +284,7 @@ public class Player : MonoBehaviour, IEnemyTarget
 
         _animator.SetTrigger("Dead");
 
-        AudioManager.Instance.PlaySoundEffect(_deathSound);
+        GameManager.Instance.AudioManager.PlaySoundEffect(_deathSound);
 
         GameplayManager.Instance.GameOver(killed);
 

@@ -5986,6 +5986,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2865520186099977331}
     m_Modifications:
+    - target: {fileID: 728269472603897282, guid: 34b2e2640241aa046bbc0fac9bf2cd8e, type: 3}
+      propertyPath: _nextSceneName
+      value: Bridge
+      objectReference: {fileID: 0}
     - target: {fileID: 1153424216124819292, guid: 34b2e2640241aa046bbc0fac9bf2cd8e, type: 3}
       propertyPath: m_SortingOrder
       value: -1

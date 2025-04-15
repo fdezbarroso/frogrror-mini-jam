@@ -25,7 +25,7 @@ public class BasicEnemyTarget : MonoBehaviour, IEnemyTarget
 
         if (_deathSound != null)
         {
-            AudioManager.Instance.PlaySoundEffect(_deathSound);
+            GameManager.Instance.AudioManager.PlaySoundEffect(_deathSound);
         }
         
         GameplayManager.Instance.DialogueUI.ShowMessage(_killedMessage);

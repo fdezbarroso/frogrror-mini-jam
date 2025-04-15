@@ -34,7 +34,7 @@ public class ThrowRockPoint : MonoBehaviour, IInteractable
         
         item.gameObject.SetActive(true);
         
-        AudioManager.Instance.PlaySoundEffect(_throwSound);
+        GameManager.Instance.AudioManager.PlaySoundEffect(_throwSound);
         
         var itemRigidbody = item.GetComponent<Rigidbody2D>();
         itemRigidbody.gravityScale = 1f;

@@ -3,24 +3,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
-
     [SerializeField] private AudioSource ambienceAudioSource;
     [SerializeField] private AudioSource soundEffectAudioSource;
     [SerializeField] private AudioSource soundtrackAudioSource;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
 
     public void StopAmbience()
     {

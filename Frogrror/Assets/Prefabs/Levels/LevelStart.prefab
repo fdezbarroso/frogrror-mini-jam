@@ -3395,6 +3395,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 625501247030624437, guid: 93d552c44ea33904e8cc80c17c556fdd, type: 3}
+      propertyPath: _nextSceneName
+      value: Tutorial
+      objectReference: {fileID: 0}
     - target: {fileID: 4757722568688286598, guid: 93d552c44ea33904e8cc80c17c556fdd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.3

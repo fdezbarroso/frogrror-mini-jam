@@ -16,7 +16,7 @@ public class Item : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        _audioManager = AudioManager.Instance;
+        _audioManager = GameManager.Instance.AudioManager;
     }
 
     public string GetName()

@@ -20,7 +20,7 @@ public class Gou : MonoBehaviour
             _animator.SetTrigger("Interact");
             _secretAnimator.SetTrigger("Interact");
             
-            AudioManager.Instance.PlaySoundEffect(_soundEffect, 0.8f);
+            GameManager.Instance.AudioManager.PlaySoundEffect(_soundEffect, 0.8f);
             player.Kill(null, false);
             
             enabled = false;

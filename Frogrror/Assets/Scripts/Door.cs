@@ -6,7 +6,7 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] private string interactMessageScissors;
     [SerializeField] private string interactMessageNoScissors;
 
-    [SerializeField] private Transform targetPosition;
+    [SerializeField] private string _nextSceneName;
 
     [SerializeField] private Sprite doorClearedSprite;
 
@@ -24,8 +24,8 @@ public class Door : MonoBehaviour, IInteractable
     private void Start()
     {
         _player = GameplayManager.Instance.Player;
-        _sceneChanger = GameplayManager.Instance.SceneChanger;
-        _audioManager = AudioManager.Instance;
+        _sceneChanger = GameManager.Instance.SceneChanger;
+        _audioManager = GameManager.Instance.AudioManager;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _interactableHandler = GetComponent<InteractableHandler>();
     }
@@ -47,11 +47,7 @@ public class Door : MonoBehaviour, IInteractable
         {
             _player.enabled = false;
             _audioManager.PlaySoundEffect(openDoorSound);
-            _sceneChanger.Show(() =>
-            {
-                _player.Teleport(targetPosition.position);
-                _sceneChanger.Hide(() => { _player.enabled = true; });
-            });
+            _sceneChanger.ChangeScene(_nextSceneName);
         }
         else if (_player.HasScissors())
         {

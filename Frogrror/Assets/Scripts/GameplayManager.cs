@@ -8,11 +8,9 @@ public class GameplayManager : MonoBehaviour
 
     [Header("UI")] [SerializeField] private DialogueUI _dialogueUI;
     [SerializeField] private GameOverScreen _gameOverScreen;
-    [SerializeField] private SceneChanger _sceneChanger;
 
     public Player Player => _player;
     public DialogueUI DialogueUI => _dialogueUI;
-    public SceneChanger SceneChanger => _sceneChanger;
 
     private bool _isPaused;
 
@@ -27,8 +25,6 @@ public class GameplayManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        _sceneChanger = FindAnyObjectByType<SceneChanger>();
     }
 
     public void GameOver(bool killed = true)
