@@ -38,4 +38,9 @@ public class InteractableHandler : MonoBehaviour
     {
         Destroy(_instructions);
     }
+
+    public virtual bool CanInteract()
+    {
+        return true;
+    }
 }

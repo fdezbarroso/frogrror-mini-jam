@@ -86,10 +86,22 @@ public class Player : MonoBehaviour, IEnemyTarget
 
     private void Update()
     {
-        if (_interactAction.WasPerformedThisFrame() && _interactableHandler != null)
+        if (_interactableHandler != null)
         {
-            _interactableHandler.Interact();
-            return;
+            if (_interactableHandler.CanInteract())
+            {
+                if (_interactAction.WasPerformedThisFrame() && _interactableHandler != null)
+                {
+                    _interactableHandler.Interact();
+                    _interactableHandler = null;
+                    return;
+                }
+            }
+            else
+            {
+                _interactableHandler.HideInstructions();
+                _interactableHandler = null;
+            }
         }
 
         if (_activateLampAction.WasPerformedThisFrame() && !IsHiding)
@@ -230,9 +242,10 @@ public class Player : MonoBehaviour, IEnemyTarget
         return _canMoveVertically;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.TryGetComponent(out InteractableHandler interactableHandler))
+        if (other.TryGetComponent(out InteractableHandler interactableHandler) && 
+            _interactableHandler == null && interactableHandler.CanInteract() )
         {
             _interactableHandler = interactableHandler;
             _interactableHandler.ShowInstructions();
