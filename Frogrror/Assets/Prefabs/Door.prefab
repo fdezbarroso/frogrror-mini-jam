@@ -116,11 +116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb58fa5ade25ea944b02babc2edefd96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactMessageScissors: That worked!
-  interactMessageNoScissors: I need something to clear those vines.
-  targetPosition: {fileID: 0}
+  requiredItemId: Scissors
+  interactMessageClear: That worked!
+  interactMessageNoRequiredItem: I need something to clear those vines.
   doorClearedSprite: {fileID: 5213229242370633579, guid: 2cfb88b5e41536640aae33d4634be616, type: 3}
   clearDoorSound: {fileID: 8300000, guid: f174b9ddc3654b54bab66d441a895375, type: 3}
+  _nextSceneName: 
   openDoorSound: {fileID: 8300000, guid: 508304e7021f2704d9dc5be9d49a170d, type: 3}
 --- !u!61 &5531252422317937063
 BoxCollider2D:

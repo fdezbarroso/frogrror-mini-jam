@@ -1,19 +1,19 @@
-using System;
 using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string interactMessageScissors;
-    [SerializeField] private string interactMessageNoScissors;
+    [Header("Lock")]
+    [SerializeField] private string requiredItemId;
+    [SerializeField] private string interactMessageClear;
+    [SerializeField] private string interactMessageNoRequiredItem;
+    [SerializeField] private Sprite doorClearedSprite;
+    [SerializeField] private AudioClip clearDoorSound;
 
     [SerializeField] private string _nextSceneName;
-
-    [SerializeField] private Sprite doorClearedSprite;
-
-    [SerializeField] private AudioClip clearDoorSound;
+    
     [SerializeField] private AudioClip openDoorSound;
 
-    private bool _isCleared = false;
+    private bool _isCleared;
 
     private Player _player;
     private SceneChanger _sceneChanger;
@@ -28,6 +28,8 @@ public class Door : MonoBehaviour, IInteractable
         _audioManager = GameManager.Instance.AudioManager;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _interactableHandler = GetComponent<InteractableHandler>();
+
+        _isCleared = string.IsNullOrEmpty(requiredItemId);
     }
 
     public string GetName()
@@ -37,21 +39,15 @@ public class Door : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!_player || !_sceneChanger || !_audioManager || !clearDoorSound || !openDoorSound || !_spriteRenderer ||
-            !doorClearedSprite || !_interactableHandler)
-        {
-            return;
-        }
-
         if (_isCleared)
         {
             _player.enabled = false;
             _audioManager.PlaySoundEffect(openDoorSound);
             _sceneChanger.ChangeScene(_nextSceneName);
         }
-        else if (_player.HasScissors())
+        else if (_player.GetItemById(requiredItemId) != null)
         {
-            GameplayManager.Instance.DialogueUI.ShowMessage(interactMessageScissors);
+            GameplayManager.Instance.DialogueUI.ShowMessage(interactMessageClear);
 
             _audioManager.PlaySoundEffect(clearDoorSound);
 
@@ -59,11 +55,11 @@ public class Door : MonoBehaviour, IInteractable
             _interactableHandler.ShowInstructions();
             _isCleared = true;
             
-            _player.RemoveItemById("Scissors");
+            _player.RemoveItemById(requiredItemId);
         }
         else
         {
-            GameplayManager.Instance.DialogueUI.ShowMessage(interactMessageNoScissors);
+            GameplayManager.Instance.DialogueUI.ShowMessage(interactMessageNoRequiredItem);
         }
     }
 }

@@ -5,7 +5,7 @@ public class LightTotem : MonoBehaviour, IInteractable
     [SerializeField] private InteractableHandler _interactableHandler;
     [SerializeField] private GameObject _light;
     
-    private bool _activated;
+    public bool Activated { get; private set; }
 
     public string GetName()
     {
@@ -14,12 +14,12 @@ public class LightTotem : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (_activated)
+        if (Activated)
         {
             return;
         }
         
-        _activated = true;
+        Activated = true;
         Destroy(_interactableHandler);
         
         _light.SetActive(true);

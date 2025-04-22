@@ -318,16 +318,6 @@ public class Player : MonoBehaviour, IEnemyTarget
         enabled = false;
     }
 
-    public void Teleport(Vector3 position)
-    {
-        transform.position = position;
-    }
-
-    public bool HasScissors()
-    {
-        return _items.Any(i => i.ID == "Scissors");
-    }
-
     public void AllowVerticalMovement(bool allow)
     {
         _canMoveVertically = allow;
