@@ -4,6 +4,7 @@ public class LightTotem : MonoBehaviour, IInteractable
 {
     [SerializeField] private InteractableHandler _interactableHandler;
     [SerializeField] private GameObject _light;
+    [SerializeField] private AudioClip _activateSfx;
     
     public bool Activated { get; private set; }
 
@@ -23,5 +24,7 @@ public class LightTotem : MonoBehaviour, IInteractable
         Destroy(_interactableHandler);
         
         _light.SetActive(true);
+        
+        GameManager.Instance.AudioManager.PlaySoundEffect(_activateSfx);
     }
 }

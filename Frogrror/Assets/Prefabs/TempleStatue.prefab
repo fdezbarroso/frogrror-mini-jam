@@ -460,3 +460,4 @@ MonoBehaviour:
   _moveOffset: {x: 1.5, y: 0, z: 0}
   _moveDuration: 3
   _moveEase: 9
+  _moveSfx: {fileID: 8300000, guid: 013b8c21f18426843b05d8ee62ea8f61, type: 3}

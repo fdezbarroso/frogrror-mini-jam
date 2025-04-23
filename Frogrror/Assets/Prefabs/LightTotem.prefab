@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactableHandler: {fileID: 1835261390060222810}
   _light: {fileID: 3405320924811175612}
+  _activateSfx: {fileID: 8300000, guid: 64c9055ea1d9ab84091b411d1d73c2ee, type: 3}
 --- !u!61 &2726624078283151982
 BoxCollider2D:
   m_ObjectHideFlags: 0

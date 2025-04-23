@@ -21,6 +21,7 @@ public class TempleStatue : MonoBehaviour
     [SerializeField] private Vector3 _moveOffset;
     [SerializeField] private float _moveDuration = 3.0f;
     [SerializeField] private Ease _moveEase = Ease.OutCubic;
+    [SerializeField] private AudioClip _moveSfx;
 
     private void Update()
     {
@@ -49,5 +50,7 @@ public class TempleStatue : MonoBehaviour
         {
             _activateCollider.enabled = true;
         });
+        
+        GameManager.Instance.AudioManager.PlaySoundEffect(_moveSfx);
     }
 }
