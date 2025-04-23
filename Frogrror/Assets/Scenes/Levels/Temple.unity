@@ -448,6 +448,22 @@ PrefabInstance:
       propertyPath: '_startItems.Array.data[0]'
       value: 
       objectReference: {fileID: 6283960193402140977, guid: c81d3ec6040a0004a8b35396f4be6f31, type: 3}
+    - target: {fileID: 111911236163577127, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: _footStepSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 111911236163577127, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: '_footStepSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: f2035d5838f9d0248b921784f9c86f5d, type: 3}
+    - target: {fileID: 111911236163577127, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: '_footStepSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 62885926fa5e75e4c9da1d5dde18113c, type: 3}
+    - target: {fileID: 111911236163577127, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
+      propertyPath: '_footStepSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: f9fb1143ecdfe0449b2f501a9e4e12ca, type: 3}
     - target: {fileID: 844507312539323846, guid: 556c36686b956f6469c0ee8ef1c15471, type: 3}
       propertyPath: m_Name
       value: Player

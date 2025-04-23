@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource ambienceAudioSource;
     [SerializeField] private AudioSource soundEffectAudioSource;
     [SerializeField] private AudioSource soundtrackAudioSource;
+    [SerializeField] private AudioReverbFilter soundEffectReverbFilter;
 
     public void StopAmbience()
     {
@@ -31,5 +32,16 @@ public class AudioManager : MonoBehaviour
     {
         soundEffectAudioSource.pitch = pitch;
         soundEffectAudioSource.PlayOneShot(clip, volume);
+    }
+
+    public void ActivateRevertFilter(AudioReverbPreset reverbPreset)
+    {
+        soundEffectReverbFilter.reverbPreset = reverbPreset;
+        soundEffectReverbFilter.enabled = true;
+    }
+
+    public void DeactivateRevertFilter()
+    {
+        soundEffectReverbFilter.enabled = false;
     }
 }

@@ -50,6 +50,7 @@ MonoBehaviour:
   ambienceAudioSource: {fileID: 674351431441492469}
   soundEffectAudioSource: {fileID: 3978805254701744595}
   soundtrackAudioSource: {fileID: 563700394832055771}
+  soundEffectReverbFilter: {fileID: 1544146117797545091}
 --- !u!1 &6751687429475086706
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8088971796779237619}
   - component: {fileID: 3978805254701744595}
+  - component: {fileID: 1544146117797545091}
   m_Layer: 0
   m_Name: SoundEffectSource
   m_TagString: Untagged
@@ -437,3 +439,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!164 &1544146117797545091
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7882820338710724984}
+  m_Enabled: 0
+  m_DryLevel: 0
+  m_Room: -1000
+  m_RoomHF: -300
+  m_DecayTime: 1.49
+  m_DecayHFRatio: 0.59
+  m_ReflectionsLevel: -1219
+  m_ReverbLevel: 441
+  m_ReverbDelay: 0.011
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 13

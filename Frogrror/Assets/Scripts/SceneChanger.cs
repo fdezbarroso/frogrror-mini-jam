@@ -29,6 +29,8 @@ public class SceneChanger : MonoBehaviour
 
     private void OnSceneLoaded(AsyncOperation loadOperation)
     {
+        GameManager.Instance.AudioManager.DeactivateRevertFilter();
+        
         var tween = _canvasGroup.DOFade(0f, _fadeDuration);
         tween.OnComplete(() =>
         {
