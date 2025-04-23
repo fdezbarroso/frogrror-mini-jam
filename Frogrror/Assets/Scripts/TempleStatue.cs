@@ -6,7 +6,17 @@ using DG.Tweening;
 
 public class TempleStatue : MonoBehaviour
 {
-    [SerializeField] private List<LightTotem> _lightTotems;
+    [Serializable]
+    private class LightTotemEye
+    {
+        [SerializeField] private LightTotem _lightTotem;
+        [SerializeField] private GameObject _eye;
+        
+        public LightTotem LightTotem => _lightTotem;
+        public GameObject Eye => _eye;
+    }
+    
+    [SerializeField] private List<LightTotemEye> _lightTotemEyes;
     [SerializeField] private BoxCollider2D _activateCollider;
     [SerializeField] private Vector3 _moveOffset;
     [SerializeField] private float _moveDuration = 3.0f;
@@ -14,8 +24,17 @@ public class TempleStatue : MonoBehaviour
 
     private void Update()
     {
-        var allTotemsActivated = _lightTotems.All(totem => totem.Activated);
-        if (!allTotemsActivated)
+        var activatedLightTotems = 0;
+        
+        foreach (var lightTotemEye in _lightTotemEyes)
+        {
+            if (!lightTotemEye.LightTotem.Activated) continue;
+            
+            lightTotemEye.Eye.SetActive(true);
+            activatedLightTotems++;
+        }
+        
+        if (activatedLightTotems != _lightTotemEyes.Count)
         {
             return;
         }

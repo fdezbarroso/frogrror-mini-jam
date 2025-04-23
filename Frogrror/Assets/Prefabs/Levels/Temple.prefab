@@ -3294,9 +3294,9 @@ Transform:
   - {fileID: 4806715810461739597}
   - {fileID: 996451184480497675}
   - {fileID: 2872103070169736922}
+  - {fileID: 6135952213923619606}
   - {fileID: 5228448200392994193}
   - {fileID: 6888726960545925318}
-  - {fileID: 6135952213923619606}
   - {fileID: 8057407837288299593}
   - {fileID: 1615771158238747742}
   - {fileID: 1344772869142398216}
@@ -3993,7 +3993,7 @@ PrefabInstance:
       objectReference: {fileID: 9120274773078298782, guid: d616e44fb884fab4bb705e5f38e9a966, type: 3}
     - target: {fileID: 4657595812377753571, guid: 04f36849fd033974ba8496af5ee683a8, type: 3}
       propertyPath: m_Name
-      value: LightTotem (2)
+      value: LightTotemLeft
       objectReference: {fileID: 0}
     - target: {fileID: 8669403690459146140, guid: 04f36849fd033974ba8496af5ee683a8, type: 3}
       propertyPath: m_IsActive
@@ -4174,7 +4174,7 @@ PrefabInstance:
       objectReference: {fileID: 9120274773078298782, guid: d616e44fb884fab4bb705e5f38e9a966, type: 3}
     - target: {fileID: 4657595812377753571, guid: 04f36849fd033974ba8496af5ee683a8, type: 3}
       propertyPath: m_Name
-      value: LightTotem (1)
+      value: LightTotemCenter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4250,7 +4250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4657595812377753571, guid: 04f36849fd033974ba8496af5ee683a8, type: 3}
       propertyPath: m_Name
-      value: LightTotem
+      value: LightTotemRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4297,6 +4297,18 @@ PrefabInstance:
       propertyPath: '_lightTotems.Array.data[2]'
       value: 
       objectReference: {fileID: 8193266193528477398}
+    - target: {fileID: 5302310339725058802, guid: 4f1e5ad8a3326ba4580c67258505fda0, type: 3}
+      propertyPath: _lightTotemEyes.Array.data[0]._lightTotem
+      value: 
+      objectReference: {fileID: 8193266193528477398}
+    - target: {fileID: 5302310339725058802, guid: 4f1e5ad8a3326ba4580c67258505fda0, type: 3}
+      propertyPath: _lightTotemEyes.Array.data[1]._lightTotem
+      value: 
+      objectReference: {fileID: 7790156267216918609}
+    - target: {fileID: 5302310339725058802, guid: 4f1e5ad8a3326ba4580c67258505fda0, type: 3}
+      propertyPath: _lightTotemEyes.Array.data[2]._lightTotem
+      value: 
+      objectReference: {fileID: 8866092992964082950}
     - target: {fileID: 5847145751930332618, guid: 4f1e5ad8a3326ba4580c67258505fda0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.38
