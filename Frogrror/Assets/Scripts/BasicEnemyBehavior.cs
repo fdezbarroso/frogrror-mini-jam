@@ -29,6 +29,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     public float suspiciousLookAroundTime = 1.0f;
 
     public int suspiciousLookAroundCount = 3;
+    public float maxVerticalDistance = 2.0f;
 
     public Color chillColor = new Color(0x48 / 255.0f, 0x68 / 255.0f, 0x45 / 255.0f);
     public Color alertColor = new Color(0x4c / 255.0f, 0x1e / 255.0f, 0x62 / 255.0f);
@@ -54,6 +55,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     private float _patrolPointWaitTimer = 0.0f;
     private float _suspiciousLookAroundTimer = 0.0f;
     private float _attackDelayTimer = 0.0f;
+    private float _verticalDistance = 0.0f;
 
     private int _lastPatrolPointIndex = 0;
     private int _suspiciousLookCount = 0;
@@ -115,14 +117,12 @@ public class BasicEnemyBehavior : MonoBehaviour
 
         _distanceToTarget = Vector2.Distance(transform.position, _target.Transform.position);
 
-        var verticalDistance = Mathf.Abs(transform.position.y - _target.Transform.position.y);
-
-        _distanceToTarget += verticalDistance * 1.5f;
+        _verticalDistance = Mathf.Abs(transform.position.y - _target.Transform.position.y);
 
         switch (state)
         {
             case EnemyState.Idle:
-                if (IsPlayerVisible() || (_distanceToTarget < hearingRange && !_target.IsHiding) || _chaseUntilKill)
+                if (IsPlayerVisible() || (IsInDistance(_distanceToTarget, hearingRange) && !_target.IsHiding) || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -147,7 +147,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Patrol:
-                if (IsPlayerVisible() || (_distanceToTarget < hearingRange && !_target.IsHiding) || _chaseUntilKill)
+                if (IsPlayerVisible() || (IsInDistance(_distanceToTarget, hearingRange) && !_target.IsHiding) || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -170,7 +170,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Suspicious:
-                if (IsPlayerVisible() || (_distanceToTarget < hearingRange && !_target.IsHiding) || _chaseUntilKill)
+                if (IsPlayerVisible() || (IsInDistance(_distanceToTarget, hearingRange) && !_target.IsHiding) || _chaseUntilKill)
                 {
                     ChangeState(EnemyState.Chase);
                 }
@@ -182,7 +182,7 @@ public class BasicEnemyBehavior : MonoBehaviour
                 break;
 
             case EnemyState.Chase:
-                if (_distanceToTarget <= attackRange)
+                if (IsInDistance(_distanceToTarget, attackRange))
                 {
                     ChangeState(EnemyState.Attack);
                 }
@@ -240,7 +240,7 @@ public class BasicEnemyBehavior : MonoBehaviour
             case EnemyState.Suspicious:
                 Debug.Log("State: Suspicious");
 
-                _lastKnownTargetPosition = _target.Transform.position;
+                UpdateLastKnownTargetPosition();
                 _suspiciousLookAroundTimer = suspiciousLookAroundTime;
                 _suspiciousLookCount = 0;
                 break;
@@ -264,6 +264,12 @@ public class BasicEnemyBehavior : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void UpdateLastKnownTargetPosition()
+    {
+        _lastKnownTargetPosition = _target.Transform.position;
+        _lastKnownTargetPosition.y = transform.position.y;
     }
 
     private void ExecuteState()
@@ -362,13 +368,6 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     private void SuspiciousBehavior()
     {
-        if (IsPlayerSuspicious())
-        {
-            _lastKnownTargetPosition = _target.Transform.position;
-            _suspiciousLookCount = 0;
-            _suspiciousLookAroundTimer = suspiciousLookAroundTime;
-        }
-
         float distanceToLastSeen = Vector2.Distance(transform.position, _lastKnownTargetPosition);
 
         if (distanceToLastSeen > pointArrivalThreshold)
@@ -404,10 +403,15 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
     }
 
+    private bool IsInDistance(float distance, float maxRange)
+    {
+        return distance <= maxRange && _verticalDistance < maxVerticalDistance;
+    }
+
     private bool IsPlayerVisible()
     {
         if (_target == null || !_target.GameObject.activeInHierarchy || !_enemyData || _target.IsHiding ||
-            _distanceToTarget > detectionRange)
+            !IsInDistance(_distanceToTarget, detectionRange))
         {
             return false;
         }
@@ -431,8 +435,8 @@ public class BasicEnemyBehavior : MonoBehaviour
     private bool IsPlayerSuspicious()
     {
         if (_target == null || !_target.GameObject.activeInHierarchy || !_enemyData || _target.IsHiding ||
-            _distanceToTarget <= detectionRange ||
-            _distanceToTarget > suspiciousRange)
+            IsInDistance(_distanceToTarget, detectionRange) ||
+            !IsInDistance(_distanceToTarget, suspiciousRange))
         {
             return false;
         }
