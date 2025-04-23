@@ -28,9 +28,8 @@ public class AudioManager : MonoBehaviour
         soundtrackAudioSource.Play();
     }
 
-    public void PlaySoundEffect(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
+    public void PlaySoundEffect(AudioClip clip, float volume = 1.0f)
     {
-        soundEffectAudioSource.pitch = pitch;
         soundEffectAudioSource.PlayOneShot(clip, volume);
     }
 

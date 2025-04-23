@@ -218,8 +218,7 @@ public class Player : MonoBehaviour, IEnemyTarget
             }
 
             var footStepSound = _footStepSounds[Random.Range(0, _footStepSounds.Count)];
-            var pitch = Random.Range(0.8f, 1.2f);
-            GameManager.Instance.AudioManager.PlaySoundEffect(footStepSound, 0.7f, pitch);
+            GameManager.Instance.AudioManager.PlaySoundEffect(footStepSound, 0.7f);
 
             _footStepTimer = _footStepDelay;
         }
